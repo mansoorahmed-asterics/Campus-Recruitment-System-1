@@ -1,6 +1,5 @@
 import React from 'react';
 const SignUpLinks = (props) => {
-    console.log(props.props.history.push)
     return (
         <div className="row">
         <div className="col s12 l6 m6 offset-l5">

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import An from '../../UIComponents/An';
 import { connect } from "react-redux"
-import { LOGOUT } from "../../store/Actions/authActions"
+import { LOGOUT } from "../../Store/Actions/authActions"
 
 const SignOut = (props) => {
     const whenClick = () => {
@@ -18,32 +18,18 @@ const SignOut = (props) => {
             <br />
             <div className="row">
                 <div className="col s10 m6 l6 offset-l3 offset-m2">
-                    <div className="card red lighten-5">
+                    <div className="card orange lighten-5">
                         <div className="card-content">
-                            <b className="card-title red-text">Log out</b>
-                            <p className="Black-text">Are you sure, You want to log out?</p>
+                            <b className="card-title orange-text">Sign out</b>
+                            <p className="Black-text">Are you sure, You want to Sign out?</p>
                         </div>
                         <div className="card-action">
-                            <An cn="btn-small black-text red lighten-1 white-text" t="Cancel" oc={WhenClick} />
+                            <An cn="btn-small black-text orange darken-3 white-text" t="Cancel" oc={WhenClick} />
                             &nbsp; &nbsp; &nbsp;
-                        <An cn="btn-small black-text red lighten-1 white-text" t="Log out" oc={whenClick} />
+                        <An cn="btn-small black-text orange darken-3 white-text" t="Sign out" oc={whenClick} />
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="hide-on-med-and-up">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
             </div>
         </div>) : (null)}</Fragment>
         

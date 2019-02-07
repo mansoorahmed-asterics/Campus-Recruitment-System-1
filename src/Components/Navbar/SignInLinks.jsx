@@ -1,19 +1,25 @@
 import React from 'react';
-const SignInLinks = () => {
+import { NavLink } from "react-router-dom";
+const SignInLinks = (props) => {
+    const char = props.email.slice(0,1)
     return (
-        <div>
-            <ul>
+            <ul className="right">
                 <li>
-
+                    <NavLink to="/">Student</NavLink>
                 </li>
                 <li>
-
+                    <NavLink to="/">Company</NavLink>
                 </li>
                 <li>
-                    
+                    <NavLink to="/"></NavLink>
+                </li>
+                <li>
+                    <NavLink to="/SignOut">Sign Out</NavLink>
+                </li>
+                <li>
+                <NavLink to="/Profile" className='btn btn-floating orange darken-3'>{char}</NavLink>
                 </li>
             </ul>
-        </div>
     );
 }
 

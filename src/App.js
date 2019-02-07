@@ -6,6 +6,7 @@ import SignUP_IN from './Components/Auth/SignUP_IN';
 import {connect} from "react-redux";
 import { CURRENTUSER } from './Store/Actions/authActions';
 import "./App.css";
+import SignOut from './Components/Auth/SignOut';
 class App extends Component {
   constructor() {
     super();
@@ -22,8 +23,8 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-              {/* <Route path="" component={}/>
-                  <Route path="" component={}/> */}
+                  {/* <Route path="/" component={}/> */}
+                  <Route path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>
         </Router>) : (
