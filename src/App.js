@@ -3,17 +3,22 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from './Components/Navbar/Navbar';
 import DashBoard from './Components/Dashboard/DashBoard';
 import SignUP_IN from './Components/Auth/SignUP_IN';
+import {connect} from "react-redux";
+import { CURRENTUSER } from './Store/Actions/authActions';
+import "./App.css";
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      show: false
     }
+  }
+  componentDidMount = () => {
+    this.props.currentUser()
   }
   render() {
     return (
       <div className="App">
-        {this.props.show ? (<Router>
+        {this.props.User ? (<Router>
           <Fragment>
             <Navbar />
             <Switch>
@@ -24,17 +29,24 @@ class App extends Component {
         </Router>) : (
             <Router>
               <Fragment>
-                <DashBoard />
-                <Switch>
-                  <Route exact path="StudentSignUp" component={SignUP_IN}/>
-                  <Route exact path="CompanySignUp" component={SignUP_IN}/>
-                  <Route exact path="AdminSignUp" component={SignUP_IN}/>
-                </Switch>
+                  <Route exact path="/" component={DashBoard} />
+                  <Route exact path="/SignUp" component={SignUP_IN}/>
               </Fragment>
             </Router>)}
       </div>
     );
   }
 }
+const mapStateToProps = (state) => {
+  const user = state.auth.currentUser ? state.auth.currentUser : null
+  return {
+    User: user,
+  }
+}
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    currentUser: () => dispatch(CURRENTUSER()),
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);

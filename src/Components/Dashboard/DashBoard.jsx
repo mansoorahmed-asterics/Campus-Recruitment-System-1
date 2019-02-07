@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import SignUpLinks from '../Navbar/SignUpLinks';
 import Footer from '../Footer/Footer';
 class DashBoard extends Component {
@@ -6,19 +6,26 @@ class DashBoard extends Component {
         super(props);
         this.state = {  };
     }
+    
     render() {
+        console.log(this.props)
         return (
-            <div className="container orange lighten-4">
-            
-                <h2 className="black-text text-darken-4 center">
+            <div className="mainPage">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div className="container white">
+                <h2 className="orange-text text-darken-4 center mainHeading">
                     Welcome to Campus Recruitment System 
                 </h2>
-                <br/>
-                <SignUpLinks/>
+                <p className="flow-text center">Please select one, in order to SignUp/SignIn.</p>
+                <SignUpLinks props={this.props}/>
                 <br/>
                 <br/>
                 <Footer />
                 <br/>
+            </div>
             </div>
         );
     }

@@ -1,20 +1,20 @@
 import React from 'react';
-import { NavLink } from "react-router-dom"
-const SignUpLinks = () => {
+const SignUpLinks = (props) => {
+    console.log(props.props.history.push)
     return (
         <div className="row">
         <div className="col s12 l6 m6 offset-l5">
             <ul>
-                <li className="flow-text">
-                    <NavLink to="/StudentSignUp">Student</NavLink>
+                <li className="flow-text form_a orange-text text-lighten-1" onClick={() => {props.props.history.push("/SignUp","Student")}}>
+                    Student
                     <br/>
                 </li>
-                <li className="flow-text">
-                    <NavLink to="CampanySignUp">Company</NavLink>
+                <li className="flow-text form_a orange-text text-lighten-1" onClick={() => {props.props.history.push("/SignUp","Company")}}>
+                    Company
                     <br/>
                 </li>
-                <li className="flow-text">
-                    <NavLink to="AdminSignUp">Admin</NavLink>
+                <li className="flow-text form_a orange-text text-lighten-1" onClick={() => {props.props.history.push("/SignUp","Admin")}}>
+                        Admin
                     <br/>
                 </li>
             </ul>
