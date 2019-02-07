@@ -11,7 +11,7 @@ const SignInLinks = (props) => {
                     <NavLink to="/">Company</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/"></NavLink>
+                    <NavLink to="/Registration">Reg</NavLink>
                 </li>
                 <li>
                     <NavLink to="/SignOut">Sign Out</NavLink>

@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import { CURRENTUSER } from './Store/Actions/authActions';
 import "./App.css";
 import SignOut from './Components/Auth/SignOut';
+import Registration from './Components/Dashboard/Student/Registration';
 class App extends Component {
   constructor() {
     super();
@@ -23,7 +24,7 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-                  {/* <Route path="/" component={}/> */}
+                  <Route path="/Registration" component={Registration}/> 
                   <Route path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>
