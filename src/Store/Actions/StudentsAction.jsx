@@ -38,7 +38,6 @@ export const PervDataOfStudents = () => {
             }
             dispatch({ type: Type.pervDataOfStudents, data: TemArr })
         })
-
     }
 }
 
@@ -48,6 +47,6 @@ return {type: Type.validate, verrMess: message}
 
 export const RemoveErrorMessages = () => {
     return dispatch => {
-        dispatch({ type: Type.removeErrorMess })
+        dispatch({type: Type.removeErrorMess })
     }
 }

@@ -14,6 +14,9 @@ const SignInLinks = (props) => {
                     <NavLink to="/Registration">Reg</NavLink>
                 </li>
                 <li>
+                    <NavLink to="/CompanyInfo">Comapny Info</NavLink>
+                </li>
+                <li>
                     <NavLink to="/SignOut">Sign Out</NavLink>
                 </li>
                 <li>

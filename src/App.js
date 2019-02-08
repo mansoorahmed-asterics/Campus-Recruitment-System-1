@@ -8,6 +8,7 @@ import { CURRENTUSER } from './Store/Actions/authActions';
 import "./App.css";
 import SignOut from './Components/Auth/SignOut';
 import Registration from './Components/Dashboard/Student/Registration';
+import Info from './Components/Dashboard/Company/Info';
 class App extends Component {
   constructor() {
     super();
@@ -25,6 +26,7 @@ class App extends Component {
             <Navbar />
             <Switch>
                   <Route path="/Registration" component={Registration}/> 
+                  <Route path="/companyInfo" component={Info}/> 
                   <Route path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>

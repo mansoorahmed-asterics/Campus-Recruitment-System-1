@@ -214,7 +214,7 @@ class Registration extends Component {
                                     {this.state.edit ? (
                                         <Button cn="btn-large  orange darken-1" t="Update" />
                                     ) : (
-                                            <Button cn="btn-large  orange darken-1" t="Register" />)}
+                                        <Button cn="btn-large  orange darken-1" t="Register" />)}
                                 </div>
                                 <br />
                                 <br />
