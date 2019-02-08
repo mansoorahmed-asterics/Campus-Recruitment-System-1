@@ -5,6 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import './Navbar.css'
 import { connect } from "react-redux"
 import { CURRENTUSER } from '../../Store/Actions/authActions';
+import { PervDataOfStudents } from '../../Store/Actions/StudentsAction';
 class Navbar extends Component {
   constructor() {
     super()
@@ -15,6 +16,7 @@ class Navbar extends Component {
   }
   componentDidMount = () => {
     this.props.currentUser()
+    this.props.pervDataofStudents()
   }
   toggleDrawer = (open) => () => {
     this.setState({
@@ -64,7 +66,7 @@ class Navbar extends Component {
             &nbsp;
             &nbsp;
             &nbsp;
-        <span className="flow-text orange darken-4 hide-on-large-only">Campus Recruitment System</span>
+        <span className="flow-text orange darken-3 hide-on-large-only">Campus Recruitment System</span>
             <Drawer open={this.state.left} onClose={this.toggleDrawer(false)}>
               <div onClick={this.toggleDrawer(false)}>
                 {sideList}
@@ -92,6 +94,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     currentUser: () => dispatch(CURRENTUSER()),
+    pervDataofStudents: () => dispatch(PervDataOfStudents()),
   }
 }
 

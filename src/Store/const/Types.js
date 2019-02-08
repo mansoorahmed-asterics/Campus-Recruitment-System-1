@@ -13,6 +13,9 @@ const Type = {
     SignUpVP: "SINGUP_VALIDATION_PASSWORD",
     SignUpVS: "SINGUP_VALIDATION_STATUS",
     validate: "VALIDATION",
-    removeErrorMess: "REMOVE_ERROR_MESSAGES"
+    removeErrorMess: "REMOVE_ERROR_MESSAGES",
+    newStudent: "NEW_STUDENT",
+    pervDataOfStudents: "PERVIOUS_DATA_OF_STUDENTS",
+    updateStudent: "UPDATE_CURRENT_STUDENT",
 }
 export default Type;

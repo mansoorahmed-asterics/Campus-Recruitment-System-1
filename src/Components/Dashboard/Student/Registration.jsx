@@ -2,47 +2,45 @@ import React, { Component, Fragment } from 'react';
 import Input from '../../../UIComponents/Input';
 import Button from '../../../UIComponents/Button';
 import { connect } from "react-redux"
-import { addNewDonor, UpdateCurrentDonor, Validation, RemoveErrorMessages } from "../../../store/Actions/donorsAction"
-import Avail from '../../../UIComponents/Avail';
+import { addNewStudent, UpdateCurrentStudent, Validation, RemoveErrorMessages } from "../../../Store/Actions/StudentsAction"
+
 
 class Registration extends Component {
     constructor() {
         super();
         this.state = {
-            DName: "",
-            DLName: "",
-            DAge: '',
-            DGender: '',
-            DPhone: "",
-            DEmail: "",
-            DCity: "",
-            DCountry: "",
+            Name: "",
+            LName: "",
+            Age: '',
+            Gender: '',
+            Phone: "",
+            Email: "",
+            Qualification: "",
+            Skills: '',
             edit: false,
             editID: "",
-            checkedA: true,
         }
     }
-    /* componentDidMount() {
+    componentDidMount() {
         if (this.props.currentUser) {
             const userID = this.props.currentUser.uid
-            if (this.props.allDonors) {
-                let allDonors = this.props.allDonors
-                let specific = allDonors.find((donor) => {
-                    return donor.userId === userID
+            if (this.props.allStudents) {
+                let allStudents = this.props.allStudents
+                let specific = allStudents.find((stu) => {
+                    return stu.userId === userID
                 })
                 if (specific) {
                     this.setState({
-                        DName: specific.firstName,
-                        DLName: specific.lastName,
-                        DAge: specific.age,
-                        DGender: specific.gender,
-                        DPhone: specific.phoneNumber,
-                        DEmail: specific.email,
-                        DCity: specific.city,
-                        DCountry: specific.country,
+                        Name: specific.firstName,
+                        LName: specific.lastName,
+                        Age: specific.age,
+                        Gender: specific.gender,
+                        Phone: specific.phoneNumber,
+                        Email: specific.email,
+                        Skills: specific.skills,
+                        Qualification: specific.qua,
                         edit: true,
                         editID: specific.id,
-                        checkedA: specific.avail
                     })
                 }
             }
@@ -51,126 +49,118 @@ class Registration extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.currentUser) {
             const userID = nextProps.currentUser.uid
-            if (nextProps.allDonors) {
-                let allDonors = nextProps.allDonors
-                let specific = allDonors.find((donor) => {
-                    return donor.userId === userID
+            if (nextProps.allStudents) {
+                let allStudents = nextProps.allStudents
+                let specific = allStudents.find((stu) => {
+                    return stu.userId === userID
                 })
                 if (specific) {
                     this.setState({
-                        DName: specific.firstName,
-                        DLName: specific.lastName,
-                        DAge: specific.age,
-                        DGender: specific.gender,
-                        DPhone: specific.phoneNumber,
-                        DEmail: specific.email,
-                        DCity: specific.city,
-                        DCountry: specific.country,
+                        Name: specific.firstName,
+                        LName: specific.lastName,
+                        Age: specific.age,
+                        Gender: specific.gender,
+                        Phone: specific.phoneNumber,
+                        Email: specific.email,
+                        Qualification: specific.qua,
+                        Skills: specific.skills,
                         edit: true,
                         editID: specific.id,
-                        checkedA: specific.avail
                     })
                 }
             }
         }
-    } */
+    } 
     onAdd = (event) => {
         event.preventDefault();
-        const { DName,
-            DLName,
-            DAge,
-            DGender,
-            DPhone,
-            DEmail,
-            DCity,
-            DCountry, } = this.state;
-        if (DName === "" &&
-            DLName === "" &&
-            DAge === "" &&
-            DGender === "" &&
-            DPhone === "" &&
-            DEmail === "" &&
-            DCity === "" &&
-            DCountry === "") {
+        const { Name,
+            LName,
+            Age,
+            Gender,
+            Phone,
+            Email,
+           Qualification, Skills } = this.state;
+        if (Name === "" &&
+            LName === "" &&
+            Age === "" &&
+            Gender === "" &&
+            Phone === "" &&
+            Email === "" &&
+            Qualification === "" && Skills === "") {
             this.props.valide("Please fill this form properly.")
             return;
         }
-        else if (DName === '') {
+        else if (Name === '') {
             this.props.valide("Please enter your name.")
             return;
         }
-        else if (DLName === "") {
+        else if (LName === "") {
             this.props.valide("Please enter your sir name.")
             return;
         }
-        else if (DAge === '') {
+        else if (Age === '') {
             this.props.valide("Please enter your age.")
             return;
         }
-        else if (DAge <= 15){
+        else if (Age <= 15){
             this.props.valide("You are not eligible for jobs.")
             return;
         }
-        else if (DGender === '') {
+        else if (Gender === '') {
             this.props.valide("Please enter your gender.")
             return;
         }
-        else if (DCity === "") {
-            this.props.valide("Please enter your city.")
+        else if (Qualification === "") {
+            this.props.valide("Please enter your qualification.")
             return;
         }
-        else if (DCountry === "") {
-            this.props.valide("Please enter your country.")
+        else if (Skills === "") {
+            this.props.valide("Please enter your skills.")
             return;
         }
-        else if (DEmail === "") {
+        else if (Email === "") {
             this.props.valide("Please enter your valide email address.")
             return;
         }
-        else if (DEmail.indexOf("@") === -1 || DEmail.indexOf(".com") === -1 ||
-        DEmail.indexOf(" ") !== -1) {
+        else if (Email.indexOf("@") === -1 || Email.indexOf(".com") === -1 ||
+        Email.indexOf(" ") !== -1) {
             this.props.valide("Please enter your valid email address.")
             return;
         }
-        else if (DPhone === "") {
+        else if (Phone === "") {
             this.props.valide("Please enter your phone number.")
             return;
         }
-        else if (DPhone.indexOf(" ") !== -1 || DPhone.indexOf("-") !== -1 ||
-        DPhone.length < 11 || DPhone.length > 11){
+        else if (Phone.indexOf(" ") !== -1 || Phone.indexOf("-") !== -1 ||
+        Phone.length < 11 || Phone.length > 11){
             this.props.valide("Please enter your 11 digit phone number.")
             return;
         }
         else if (this.state.edit) {
-            this.props.editDonor({
+            this.props.editStudent({
                 userId: this.props.currentUser.uid,
-                firstName: DName, lastName: DLName,
-                age: DAge,
-                gender: DGender, phoneNumber: DPhone,
-                email: DEmail, city: DCity, country: DCountry,
-                avail: this.state.checkedA,
+                firstName: Name, lastName: LName,
+                age: Age,
+                skills: Skills,
+                gender: Gender, phoneNumber: Phone,
+                email: Email, qua: Qualification,
             }, this.state.editID)
         }
         else {
-            this.props.newDonor({
+            this.props.newStudent({
                 userId: this.props.currentUser.uid,
-                firstName: DName, lastName: DLName, age: DAge,
-                gender: DGender, phoneNumber: DPhone,
-                email: DEmail, city: DCity, country: DCountry,
-                avail: this.state.checkedA,
+                firstName: Name, lastName: LName, age: Age,
+                gender: Gender, phoneNumber: Phone,
+                email: Email, qua: Qualification,
+                skills: Skills,
             })
         }
         this.props.history.push('/');
     }
 
     whenChange = (event) => {
-        const { name, value, checked } = event.target;
-        if (name === "checkedA") {
-            this.setState({ [name]: checked })
-        }
-        else {
-            this.setState({ [name]: value })
-        }
+        const { name, value} = event.target;
+        this.setState({ [name]: value })
         this.props.error();
     }
     render() {
@@ -181,10 +171,10 @@ class Registration extends Component {
                         <br />
                         <div className="row">
                             <div className="orange  col l12 s12 darken-1 white-text center flow-text">
-                                Registration Form
+                                Student Registration Form
                             </div>
                             {this.props.errFlag ? (
-                                <div className="col l12 s12 center grey darken-1 white-text">
+                                <div className="col l12 s12 center grey lighten-3 red-text">
                                     <h6>{this.props.errmess}
                                     </h6>
                                 </div>
@@ -194,37 +184,37 @@ class Registration extends Component {
                                     <br />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.DName} oc={this.whenChange} t="text" f='name' d='name' l='First Name' n="DName" />
+                                    <Input v={this.state.Name} oc={this.whenChange} t="text" f='name' d='name' l='First Name' n="Name" />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.DLName} oc={this.whenChange} t="text" f='lname' d='lname' l='Sir Name' n="DLName" />
+                                    <Input v={this.state.LName} oc={this.whenChange} t="text" f='lname' d='lname' l='Sir Name' n="LName" />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.DAge} oc={this.whenChange} t="number" f='age' d='age' l='Age' n="DAge" />
+                                    <Input v={this.state.Age} oc={this.whenChange} t="number" f='age' d='age' l='Age' n="Age" />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.DGender} oc={this.whenChange} t="text" f='gender' d='gender' l='Gender' n="DGender" />
+                                    <Input v={this.state.Gender} oc={this.whenChange} t="text" f='gender' d='gender' l='Gender' n="Gender" />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.DCity} oc={this.whenChange} t="text" f='city' d='city' l='City' n="DCity" />
+                                    <Input v={this.state.Qualification} oc={this.whenChange} t="text" f='qua' d='qua' l='Qualification' n="Qualification" />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.DCountry} oc={this.whenChange} t="text" f='country' d='country' l='Country' n="DCountry" />
+                                    <Input v={this.state.Skills} oc={this.whenChange} t="text" f='skills' d='skills' l='Skills' n="Skills" />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.DEmail} oc={this.whenChange} t="email" f='email' d='email' l='Email' n="DEmail" />
+                                    <Input v={this.state.Email} oc={this.whenChange} t="email" f='email' d='email' l='Email' n="Email" />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.DPhone} oc={this.whenChange} t="number" f="phn" d="phn" l="Phone Number" n="DPhone" />
+                                    <Input v={this.state.Phone} oc={this.whenChange} t="number" f="phn" d="phn" l="Phone Number" n="Phone" />
                                 </div>
-                                <div className="orange col l6 s12 lighten-5">
-                                    <Avail name="checkedA" checked={this.state.checkedA} oc={this.whenChange} />
+                                <div className="col l12 s12">
+                                    &nbsp;
                                 </div>
                                 <div className="col s4 l2 offset-s4 offset-l5 ">
                                     {this.state.edit ? (
-                                        <Button cn="btn  orange darken-1" t="Update" />
+                                        <Button cn="btn-large  orange darken-1" t="Update" />
                                     ) : (
-                                            <Button cn="btn  orange darken-1" t="Register" />)}
+                                            <Button cn="btn-large  orange darken-1" t="Register" />)}
                                 </div>
                                 <br />
                                 <br />
@@ -239,8 +229,8 @@ class Registration extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        newDonor: (obj) => dispatch(addNewDonor(obj)),
-        editDonor: (obj, editID) => dispatch(UpdateCurrentDonor(obj, editID)),
+        newStudent: (obj) => dispatch(addNewStudent(obj)),
+        editStudent: (obj, editID) => dispatch(UpdateCurrentStudent(obj, editID)),
         valide: (message) => dispatch(Validation(message)),
         error: () => dispatch(RemoveErrorMessages()),
     }
@@ -248,8 +238,9 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         currentUser: state.auth.currentUser,
-        errmess: state.donor.vErrorMessage,
-        errFlag: state.donor.vErrorFlag,
+        errmess: state.student.vErrorMessage,
+        errFlag: state.student.vErrorFlag,
+        allStudents: state.student.allStudents,
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);
