@@ -35,7 +35,7 @@ class Navbar extends Component {
           </li>
           <li className="collection-item">
             <NavLink to="/" exact className="orange-text">
-              Student
+              Students
             </NavLink>
           </li>
           <li className="collection-item">

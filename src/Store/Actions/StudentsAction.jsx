@@ -33,6 +33,7 @@ export const PervDataOfStudents = () => {
                     address: data[key].address,
                     email: data[key].email,
                     qua: data[key].qua,
+                    dep: data[key].dep,
                     skills: data[key].skills,
                 })
             }

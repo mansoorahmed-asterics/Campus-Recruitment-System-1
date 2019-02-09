@@ -9,6 +9,8 @@ import "./App.css";
 import SignOut from './Components/Auth/SignOut';
 import Registration from './Components/Dashboard/Student/Registration';
 import Info from './Components/Dashboard/Company/Info';
+import Posting from './Components/Dashboard/Company/Posting';
+import Profile from './Components/Dashboard/UserProfile/Profile';
 class App extends Component {
   constructor() {
     super();
@@ -27,6 +29,8 @@ class App extends Component {
             <Switch>
                   <Route path="/Registration" component={Registration}/> 
                   <Route path="/companyInfo" component={Info}/> 
+                  <Route path="/Posting" component={Posting}/> 
+                  <Route path="/Profile" component={Profile}/> 
                   <Route path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>

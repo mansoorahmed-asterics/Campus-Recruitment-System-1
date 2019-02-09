@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import Input from '../../../UIComponents/Input';
 import Button from '../../../UIComponents/Button';
+import Department from "../../../UIComponents/Department"
 import { connect } from "react-redux"
 import { addNewStudent, UpdateCurrentStudent, Validation, RemoveErrorMessages } from "../../../Store/Actions/StudentsAction"
-
-
 class Registration extends Component {
     constructor() {
         super();
@@ -17,6 +16,7 @@ class Registration extends Component {
             Email: "",
             Qualification: "",
             Skills: '',
+            Department: "",
             edit: false,
             editID: "",
         }
@@ -38,6 +38,7 @@ class Registration extends Component {
                         Phone: specific.phoneNumber,
                         Email: specific.email,
                         Skills: specific.skills,
+                        Department: specific.dep,
                         Qualification: specific.qua,
                         edit: true,
                         editID: specific.id,
@@ -62,6 +63,7 @@ class Registration extends Component {
                         Gender: specific.gender,
                         Phone: specific.phoneNumber,
                         Email: specific.email,
+                        Department: specific.dep,
                         Qualification: specific.qua,
                         Skills: specific.skills,
                         edit: true,
@@ -79,14 +81,14 @@ class Registration extends Component {
             Gender,
             Phone,
             Email,
-           Qualification, Skills } = this.state;
+           Qualification, Skills, Department } = this.state;
         if (Name === "" &&
             LName === "" &&
             Age === "" &&
             Gender === "" &&
             Phone === "" &&
             Email === "" &&
-            Qualification === "" && Skills === "") {
+            Qualification === "" && Skills === "" && Department === "") {
             this.props.valide("Please fill this form properly.")
             return;
         }
@@ -112,6 +114,10 @@ class Registration extends Component {
         }
         else if (Qualification === "") {
             this.props.valide("Please enter your qualification.")
+            return;
+        }
+        else if (Department === "") {
+            this.props.valide("Please select your department.")
             return;
         }
         else if (Skills === "") {
@@ -144,6 +150,7 @@ class Registration extends Component {
                 skills: Skills,
                 gender: Gender, phoneNumber: Phone,
                 email: Email, qua: Qualification,
+                dep: Department,
             }, this.state.editID)
         }
         else {
@@ -152,6 +159,7 @@ class Registration extends Component {
                 firstName: Name, lastName: LName, age: Age,
                 gender: Gender, phoneNumber: Phone,
                 email: Email, qua: Qualification,
+                dep: Department,
                 skills: Skills,
             })
         }
@@ -201,11 +209,14 @@ class Registration extends Component {
                                 <div className="orange col l6 s12 lighten-5">
                                     <Input v={this.state.Skills} oc={this.whenChange} t="text" f='skills' d='skills' l='Skills' n="Skills" />
                                 </div>
+                                <div className="orange col l12 s12 lighten-5">
+                                <Department v={this.state.Department} oc={this.whenChange} text="Department" id="dep-simple" f="dep-simple" n="Department" />
+                                </div>
                                 <div className="orange col l6 s12 lighten-5">
                                     <Input v={this.state.Email} oc={this.whenChange} t="email" f='email' d='email' l='Email' n="Email" />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.Phone} oc={this.whenChange} t="number" f="phn" d="phn" l="Phone Number" n="Phone" />
+                                    <Input v={this.state.Phone} oc={this.whenChange} t="number" f="phn" d="phn" l="Conatct Number" n="Phone" />
                                 </div>
                                 <div className="col l12 s12">
                                     &nbsp;
