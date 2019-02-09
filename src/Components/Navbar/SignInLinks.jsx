@@ -1,34 +1,31 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 const SignInLinks = (props) => {
     const char = props.email.slice(0, 1)
     return (
         <ul className="right">
-            <li>
-                <NavLink to="/">Student</NavLink>
-            </li>
-            <li>
-                <NavLink to="/">Company</NavLink>
-            </li>
-            <li>
-                <NavLink to="/Registration">Reg</NavLink>
-            </li>
-            <li>
-                <NavLink to="/CompanyInfo">Comapny Info</NavLink>
-            </li>
-            <li>
-                <NavLink to="/Posting">
-                    Post New Vacancy
-                </NavLink>
-            </li>
+            {props.status === "Company" || props.status === "Admin" ? (<li>
+                <NavLink to="/">Students</NavLink>
+            </li>) : (null)}
+            {props.status === "Student" || props.status === "Admin" ? (<li>
+                <NavLink to="/">Vacancies</NavLink>
+            </li>) : (null)}
+            {props.status === "Company" ? (<li>
+                <NavLink to="/Posting">Post New Vacancy</NavLink>
+            </li>) : (null)}
             <li>
                 <NavLink to="/SignOut">Sign Out</NavLink>
             </li>
-            <li>
+            {props.status === "Company" || props.status === "Student" ? (<li>
                 <NavLink to="/Profile" className='btn btn-floating orange darken-3'>{char}</NavLink>
-            </li>
+            </li>) : (null)}
         </ul>
     );
 }
-
-export default SignInLinks;
+const mapStateToProps = (state) => {
+    return {
+        status: state.auth.status,
+    }
+}
+export default connect(mapStateToProps)(SignInLinks);

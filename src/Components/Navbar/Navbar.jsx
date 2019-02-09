@@ -4,8 +4,6 @@ import { NavLink } from "react-router-dom"
 import Drawer from '@material-ui/core/Drawer';
 import './Navbar.css'
 import { connect } from "react-redux"
-import { CURRENTUSER } from '../../Store/Actions/authActions';
-import { PervDataOfStudents } from '../../Store/Actions/StudentsAction';
 class Navbar extends Component {
   constructor() {
     super()
@@ -13,10 +11,6 @@ class Navbar extends Component {
       name: "",
       left: false,
     }
-  }
-  componentDidMount = () => {
-    this.props.currentUser()
-    this.props.pervDataofStudents()
   }
   toggleDrawer = (open) => () => {
     this.setState({
@@ -29,29 +23,24 @@ class Navbar extends Component {
       <div className="list_width">
         <ul className="collection with-header">
           <li className="collection-header orange darken-3">
-              <h6 className="white-text">
-                {this.props.User ? (this.props.User.email) : (null)}
-              </h6>
+            <h6 className="white-text">
+              {this.props.User ? (this.props.User.email) : (null)}
+            </h6>
           </li>
+          {this.props.status === "Company" || this.props.status === "Admin" ? (<li className="collection-item">
+            <NavLink to="/" className="orange-text">Students</NavLink>
+          </li>) : (null)}
+          {this.props.status === "Student" || this.props.status === "Admin" ? (<li className="collection-item">
+            <NavLink to="/" className="orange-text">Vacancies</NavLink>
+          </li>) : (null)}
+          {this.props.status === "Company" ? (<li className="collection-item">
+            <NavLink to="/Posting" className="orange-text">Post New Vacancy</NavLink>
+          </li>) : (null)}
+          {this.props.status === "Company" || this.props.status === "Student" ? (<li className="collection-item">
+            <NavLink to="/Profile" className="orange-text">Profile</NavLink>
+          </li>) : (null)}
           <li className="collection-item">
-            <NavLink to="/" exact className="orange-text">
-              Students
-            </NavLink>
-          </li>
-          <li className="collection-item">
-            <NavLink to="/" exact className="orange-text">
-              Company
-            </NavLink>
-          </li>
-          <li className="collection-item">
-            <NavLink to="/Profile" className="orange-text">
-              Profile
-            </NavLink>
-          </li>
-          <li className="collection-item">
-            <NavLink to='/SignOut' exact className="orange-text">
-              Sign out
-      </NavLink>
+            <NavLink to="/SignOut" className="orange-text">Sign Out</NavLink>
           </li>
         </ul>
       </div>
@@ -66,7 +55,7 @@ class Navbar extends Component {
             &nbsp;
             &nbsp;
             &nbsp;
-        <span className="flow-text orange darken-3 hide-on-large-only">Campus Recruitment System</span>
+        <span className="flow-text orange darken-4 hide-on-large-only">Campus Recruitment System</span>
             <Drawer open={this.state.left} onClose={this.toggleDrawer(false)}>
               <div onClick={this.toggleDrawer(false)}>
                 {sideList}
@@ -74,7 +63,7 @@ class Navbar extends Component {
             </Drawer>
             <span className="brand-logo hide-on-med-and-down">Campus Recruitment System</span>
             <ul className="right hide-on-med-and-down">
-              <SignInLinks s={this.props.status} email={this.props.User.email} />
+              <SignInLinks email={this.props.User.email} />
             </ul>
           </div>
         </nav>
@@ -90,12 +79,4 @@ const mapStateToProps = (state) => {
     status: state.auth.status
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    currentUser: () => dispatch(CURRENTUSER()),
-    pervDataofStudents: () => dispatch(PervDataOfStudents()),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
+export default connect(mapStateToProps, null)(Navbar)

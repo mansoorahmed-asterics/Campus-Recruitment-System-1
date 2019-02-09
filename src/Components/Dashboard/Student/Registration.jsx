@@ -72,7 +72,7 @@ class Registration extends Component {
                 }
             }
         }
-    } 
+    }
     onAdd = (event) => {
         event.preventDefault();
         const { Name,
@@ -81,7 +81,7 @@ class Registration extends Component {
             Gender,
             Phone,
             Email,
-           Qualification, Skills, Department } = this.state;
+            Qualification, Skills, Department } = this.state;
         if (Name === "" &&
             LName === "" &&
             Age === "" &&
@@ -104,7 +104,7 @@ class Registration extends Component {
             this.props.valide("Please enter your age.")
             return;
         }
-        else if (Age <= 15){
+        else if (Age <= 15) {
             this.props.valide("You are not eligible for jobs.")
             return;
         }
@@ -129,7 +129,7 @@ class Registration extends Component {
             return;
         }
         else if (Email.indexOf("@") === -1 || Email.indexOf(".com") === -1 ||
-        Email.indexOf(" ") !== -1) {
+            Email.indexOf(" ") !== -1) {
             this.props.valide("Please enter your valid email address.")
             return;
         }
@@ -138,7 +138,7 @@ class Registration extends Component {
             return;
         }
         else if (Phone.indexOf(" ") !== -1 || Phone.indexOf("-") !== -1 ||
-        Phone.length < 11 || Phone.length > 11){
+            Phone.length < 11 || Phone.length > 11) {
             this.props.valide("Please enter your 11 digit phone number.")
             return;
         }
@@ -163,11 +163,10 @@ class Registration extends Component {
                 skills: Skills,
             })
         }
-        this.props.history.push('/');
     }
 
     whenChange = (event) => {
-        const { name, value} = event.target;
+        const { name, value } = event.target;
         this.setState({ [name]: value })
         this.props.error();
     }
@@ -175,6 +174,13 @@ class Registration extends Component {
         return (
             <Fragment>
                 {this.props.currentUser ? (
+                    <Fragment>
+                        {this.props.edit ? (null) : (<nav className="nav-wrapper orange darken-4">
+                            <div className="container">
+                                <span className="brand-logo hide-on-small-only">Campus Recruitment System</span>
+                                <span className="hide-on-med-and-up">Campus Recruitment System</span>
+                            </div>
+                        </nav>)}
                     <div className="container">
                         <br />
                         <div className="row">
@@ -210,7 +216,7 @@ class Registration extends Component {
                                     <Input v={this.state.Skills} oc={this.whenChange} t="text" f='skills' d='skills' l='Skills' n="Skills" />
                                 </div>
                                 <div className="orange col l12 s12 lighten-5">
-                                <Department v={this.state.Department} oc={this.whenChange} text="Department" id="dep-simple" f="dep-simple" n="Department" />
+                                    <Department v={this.state.Department} oc={this.whenChange} text="Department" id="dep-simple" f="dep-simple" n="Department" />
                                 </div>
                                 <div className="orange col l6 s12 lighten-5">
                                     <Input v={this.state.Email} oc={this.whenChange} t="email" f='email' d='email' l='Email' n="Email" />
@@ -225,13 +231,14 @@ class Registration extends Component {
                                     {this.state.edit ? (
                                         <Button cn="btn-large  orange darken-1" t="Update" />
                                     ) : (
-                                        <Button cn="btn-large  orange darken-1" t="Register" />)}
+                                            <Button cn="btn-large  orange darken-1" t="Register" />)}
                                 </div>
                                 <br />
                                 <br />
                             </form>
                         </div>
                     </div>
+                    </Fragment>
                 ) : (null)}
             </Fragment>
         )

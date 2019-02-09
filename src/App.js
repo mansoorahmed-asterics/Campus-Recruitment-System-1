@@ -11,30 +11,33 @@ import Registration from './Components/Dashboard/Student/Registration';
 import Info from './Components/Dashboard/Company/Info';
 import Posting from './Components/Dashboard/Company/Posting';
 import Profile from './Components/Dashboard/UserProfile/Profile';
+import {PervDataOfStudents} from "./Store/Actions/StudentsAction";
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-    }
-  }
   componentDidMount = () => {
     this.props.currentUser()
+    this.props.pervDataofStudents()
   }
   render() {
     return (
       <div className="App">
-        {this.props.User ? (<Router>
+        {this.props.User ? (this.props.Status === "Admin" ? (<Router>
           <Fragment>
             <Navbar />
             <Switch>
-                  <Route path="/Registration" component={Registration}/> 
-                  <Route path="/companyInfo" component={Info}/> 
-                  <Route path="/Posting" component={Posting}/> 
                   <Route path="/Profile" component={Profile}/> 
                   <Route path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>
-        </Router>) : (
+        </Router>): (this.props.Status === "Student" ? (this.props.reg ? (<Router>
+          <Fragment>
+            <Navbar />
+            <Switch>
+                  <Route path="/Registration" component={Registration}/> 
+                  <Route path="/Profile" component={Profile}/> 
+                  <Route path="/SignOut" component={SignOut}/>
+            </Switch>
+          </Fragment>
+        </Router>): (<Registration />)) : (null))) : (
             <Router>
               <Fragment>
                   <Route exact path="/" component={DashBoard} />
@@ -46,15 +49,21 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state) => {
+
   const user = state.auth.currentUser ? state.auth.currentUser : null
+  const status = state.auth.currentUser ? state.auth.status : null
+  const reg = state.auth.currentUser ? state.student.allStudents.find(v => v.userId === user.uid) : null
   return {
     User: user,
+    Status: status,
+    reg:reg, 
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     currentUser: () => dispatch(CURRENTUSER()),
+    pervDataofStudents: () => dispatch(PervDataOfStudents()),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

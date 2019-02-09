@@ -51,3 +51,10 @@ export const RemoveErrorMessages = () => {
         dispatch({type: Type.removeErrorMess })
     }
 }
+export const RS = () => {
+    return (dispatch, pervState) => {
+        console.log(pervState())
+        /* dispatch({type: Type.registered})
+        dispatch({type: Type.notRegister}) */
+    }
+}

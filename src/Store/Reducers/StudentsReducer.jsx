@@ -5,7 +5,6 @@ const initState = {
     vErrorMessage: "",
     vErrorFlag: false,
 }
-
 const StudentsReducer = (state = initState, action) => {
     switch (action.type) {
         case Type.pervDataOfStudents:
