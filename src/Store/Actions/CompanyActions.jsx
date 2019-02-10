@@ -32,7 +32,13 @@ export const PervDataOfCompanies = () => {
                     cnum: data[key].cnum,
                 })
             }
-            dispatch({ type: Type.pervDataOfCompanies, data: TemArr })
+            dispatch({ type: Type.pervDataOfCompanies, dataC: TemArr })
         })
     }
+}
+export const RemoveErrorMessagesC = () => {
+    return {type: Type.removeErrorMessC}
+}
+export const ErrorInfoC = (mess) => {
+    return {type: Type.errorInfoC, errorMessageInfoC: mess}
 }

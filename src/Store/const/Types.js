@@ -14,11 +14,17 @@ const Type = {
     SignUpVS: "SINGUP_VALIDATION_STATUS",
     validate: "VALIDATION",
     removeErrorMess: "REMOVE_ERROR_MESSAGES",
+    removeErrorMessC: "REMOVE_ERROR_MESSAGES_Company",
+    errorInfoC: "ERROR_INFO_COMPANY",
     newStudent: "NEW_STUDENT",
     pervDataOfStudents: "PERVIOUS_DATA_OF_STUDENTS",
     updateStudent: "UPDATE_CURRENT_STUDENT",
     newCompany: "NEW_COMPANY",
     pervDataOfCompanies: "PERVIOUS_DATA_OF_COMPANIES",
     updateCompany: "UPDATE_CURRENT_COMPANY",
+    removeErrorMessPC: "REMOVE_ERROR_MESSAGES_POST_COMPANY",
+    errorPostC: "ERROR_POST_COMPANY",
+    newVacancy: "NEW_VACANCIES",
+    pervDataOfVacancies: "PERVIOUS_DATA_OF_VACANCIES",
 }
 export default Type;

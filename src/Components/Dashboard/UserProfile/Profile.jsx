@@ -8,19 +8,21 @@ const Profile = (props) => {
     const currentCompany = props.allCompanies.find(com => {
         return com.userId === props.user.uid
       })
-
+    const currentCompanyVacancies = props.allVacancies.filter(van => {
+        return van.userId === props.user.uid
+      })
     return (
-        <div className="container">
+        <div>
             <br />
             <br />
-            {props.user ? (props.status === "Student" ? (<div className="row">
+            {props.user ? (props.status === "Student" ? (<div className="container">
+            <div className="row">
                 <div className="col s12 m8 l6 offset-l3 offset-m2">
                     <div className="card orange lighten-5">
                         <div className="card-image">
-                            {props.UserProfilePictureFlag ? (<img src={props.UserProfilePictureURL} alt="user-profile" className="responsive-img" />
-                            ) : (<img src={DefaultPic} alt="user-profile" className="pImage" />)}
-                            <span className="card-title blue-text text-darken-3">Change Photo</span>
-                            <span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => {}}><i className="material-icons">add</i></span>
+                            <img src={DefaultPic} alt="user-profile" className="pImage" />
+                            <span className="card-title orange-text text-darken-4">Student Profile</span>
+                            <span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => {props.history.push("/Registration")}}><i className="material-icons">add</i></span>
                         </div>
                         <div className="card-content">
                             <table>
@@ -61,14 +63,14 @@ const Profile = (props) => {
                                         <th className="grey-text">Contact Number: </th>
                                         <td>{currentStudent.phoneNumber}</td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>) : (<div className="row">
-                <div className="col l6 s12">
+                <div className="col l4 s12 offset-l1">
                     <div className="card">
                         <div className="card-content">
                             <div className="card-title orange-text">
@@ -101,13 +103,13 @@ const Profile = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="col l6 s12">
+                <div className="col l7 s12">
                     <div className="card">
                         <div className="card-content">
                             <div className="card-title orange-text">
-                                Postings
+                                POSTED VACANCIES
                             </div>
-                            <table>
+                            {currentCompanyVacancies.length > 0 ? (<table>
                                 <thead>
                                     <tr>
                                         <th className="orange-text">
@@ -125,9 +127,14 @@ const Profile = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {props.postingFlag ? (props.postings.map(v => <tr><td></td><td></td><td></td></tr>)): (<tr><td className="red-text">You didn't post any vacancy yet!</td></tr>)}
+                                    {currentCompanyVacancies.map(v => <tr key={v.postId}>
+                                    <td>{v.jobname}</td>
+                                    <td>{v.jobdes}</td>
+                                    <td>{v.salary}</td>
+                                    <td>{v.ec}</td>
+                                    </tr>)}
                                 </tbody>
-                            </table>
+                            </table>) : (<div className="red-text">You didn't post any vacancy yet!</div>)}
                         </div>
                     </div>
                 </div>
@@ -141,14 +148,7 @@ const mapStateToProps = (state) => {
         status: state.auth.status,
         allStudents: state.student.allStudents,
         allCompanies: state.company.allCompanies,
-
-        UserProfilePictureFlag: false,
-        UserProfilePictureURL: "",
-
-        postings: [],
-        postingFlag: true,
-
-
+        allVacancies: state.vacancy.allVacancies,
     }
 }
 const mapStateToDispatch = () => {

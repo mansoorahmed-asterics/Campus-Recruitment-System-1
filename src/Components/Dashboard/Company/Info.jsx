@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Button from '../../../UIComponents/Button';
 import { connect } from "react-redux";
 import InputS from '../../../UIComponents/InputS';
-import { addNewCompany, UpdateCurrentCompany } from '../../../Store/Actions/CompanyActions';
+import { addNewCompany, UpdateCurrentCompany, RemoveErrorMessagesC,ErrorInfoC } from '../../../Store/Actions/CompanyActions';
 class Info extends Component {
     constructor() {
         super();
@@ -65,6 +65,7 @@ class Info extends Component {
     whenChange = (event) => {
         const { name, value } = event.target;
         this.setState({ [name]: value })
+        this.props.removeError();
     }
     whenSubmit = (event) => {
         event.preventDefault();
@@ -80,6 +81,41 @@ class Info extends Component {
             HRName === "" &&
             Email === "" &&
             ContactNumber === "") {
+            this.props.error("Please fill this form properly!")
+            return;
+        }
+        else if(CompanyName === ""){
+            this.props.error('Please enter your company name.')
+            return;
+        }
+        else if(Established === ""){
+            this.props.error("Please enter your company established year")
+            return;
+        }
+        else if(Established.length > 4 || Established.length < 4){
+            this.props.error("Please enter company establish year properly.")
+            return;
+        }
+        else if(HRName === ""){
+            this.props.error('Please enter your HR name.')
+            return;
+        }
+        else if(Email === "") {
+            this.props.error("Please enter your valide email address.")
+            return;
+        }
+        else if (Email.indexOf("@") === -1 || Email.indexOf(".com") === -1 ||
+            Email.indexOf(" ") !== -1) {
+            this.props.error("Please enter your valid email address.")
+            return;
+        }
+        else if (ContactNumber === "") {
+            this.props.error("Please enter your contact number.")
+            return;
+        }
+        else if (ContactNumber.indexOf(" ") !== -1 || ContactNumber.indexOf("-") !== -1 ||
+            ContactNumber.length < 11 || ContactNumber.length > 11) {
+            this.props.error("Please enter your 11 digit contact number.")
             return;
         }
         else if (this.state.edit) {
@@ -123,6 +159,7 @@ class Info extends Component {
                                             <div className="card-title orange-text text-darken-2 center">
                                                 Company Registration Form
                                         </div>
+                                            {this.props.errorFlag ? (<div className="center grey lighten-3 red-text"><h6>{this.props.errorMessageC} </h6></div>) : (null)}
                                             <InputS edit={this.state.edit} t="text" l="Comapny Name" n="CompanyName" v={this.state.CompanyName} oc={this.whenChange} d="cname" f="cname" />
                                             <InputS edit={this.state.edit} t="text" l="Established" n="Established" v={this.state.Established} oc={this.whenChange} d="es" f="es" />
                                             <InputS edit={this.state.edit} t="text" l="HR Name" n="HRName" v={this.state.HRName} oc={this.whenChange} d="hrname" f="hrname" />
@@ -146,12 +183,16 @@ const mapDispatchToProps = (dispatch) => {
     return {
         newCompany: (obj) => dispatch(addNewCompany(obj)),
         editCompanyInfo: (obj, editID) => dispatch(UpdateCurrentCompany(obj, editID)),
+        removeError: () => dispatch(RemoveErrorMessagesC()),
+        error: (mess) => dispatch(ErrorInfoC(mess))
     }
 }
 const mapStateToProps = (state) => {
     return {
         currentUser: state.auth.currentUser,
         allCompanies: state.company.allCompanies,
+        errorMessageC: state.company.errorMessage,
+        errorFlag: state.company.errorFlag,
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Info);

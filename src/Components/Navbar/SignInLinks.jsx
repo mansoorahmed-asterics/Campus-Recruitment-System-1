@@ -15,7 +15,7 @@ const SignInLinks = (props) => {
                 <NavLink to="/Vacancies">Vacancies</NavLink>
             </li>) : (null)}
             {props.status === "Company" ? (<li>
-                <NavLink to="/Posting">Post New Vacancy</NavLink>
+                <NavLink to="/PostVacancy">Post New Vacancy</NavLink>
             </li>) : (null)}
             <li>
                 <NavLink to="/SignOut">Sign Out</NavLink>

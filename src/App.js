@@ -9,18 +9,20 @@ import "./App.css";
 import SignOut from './Components/Auth/SignOut';
 import Registration from './Components/Dashboard/Student/Registration';
 import Info from './Components/Dashboard/Company/Info';
-import Posting from './Components/Dashboard/Company/Posting';
+import PostVacancy from './Components/Dashboard/Company/PostVacancy';
 import Profile from './Components/Dashboard/UserProfile/Profile';
 import {PervDataOfStudents} from "./Store/Actions/StudentsAction";
 import Students from './Components/Dashboard/Student/Students';
 import Companies from './Components/Dashboard/Company/Companies';
 import Vacancies from "./Components/Dashboard/Company/Vacancies";
 import { PervDataOfCompanies } from './Store/Actions/CompanyActions';
+import { PervDataOfVacancies } from './Store/Actions/VacancyActions';
 class App extends Component {
   componentDidMount = () => {
     this.props.currentUser();
-    this.props.pervDataofStudents();
-    this.props.PervDataOfCompanies();
+    this.props.pervDataOfStudents();
+    this.props.pervDataOfCompanies();
+    this.props.pervDataOfVacancies();
   }
   render() {
     return (
@@ -54,7 +56,7 @@ class App extends Component {
                   <Route path="/Students" component={Students} />
                   
                   <Route path="/CompanyInfo" component={Info}/>
-                  <Route path="/Posting" component={Posting} />
+                  <Route path="/PostVacancy" component={PostVacancy} />
                   <Route path="/Profile" component={Profile}/> 
                   <Route path="/SignOut" component={SignOut}/>
             </Switch>
@@ -76,8 +78,9 @@ const mapStateToProps = (state) => {
   const status = state.auth.currentUser ? state.auth.status : null
   const regS = state.auth.currentUser ? state.student.allStudents.find(v => v.userId === user.uid) : null
   const regC = state.auth.currentUser ? state.company.allCompanies.find(v => v.userId === user.uid) : null
-  console.log(state.student.allStudents);
-  console.log(state.company.allCompanies);
+  console.log("Students",state.student.allStudents);
+  console.log("Companies",state.company.allCompanies);
+  console.log("Vacancies",state.vacancy.allVacancies); 
   return {
     User: user,
     Status: status,
@@ -89,8 +92,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     currentUser: () => dispatch(CURRENTUSER()),
-    pervDataofStudents: () => dispatch(PervDataOfStudents()),
-    PervDataOfCompanies: () => dispatch(PervDataOfCompanies()),
+    pervDataOfStudents: () => dispatch(PervDataOfStudents()),
+    pervDataOfCompanies: () => dispatch(PervDataOfCompanies()),
+    pervDataOfVacancies: () => dispatch(PervDataOfVacancies()),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
