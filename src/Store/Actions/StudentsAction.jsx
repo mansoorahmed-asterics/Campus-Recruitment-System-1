@@ -1,6 +1,6 @@
-import Type from "../const/Types"
-import "../../config/fb"
-import * as firebase from "firebase"
+import Type from "../const/Types";
+import "../../config/fb";
+import * as firebase from "firebase";
 
 export const addNewStudent = (newStudent) => {
     return dispatch => {
@@ -49,12 +49,5 @@ return {type: Type.validate, verrMess: message}
 export const RemoveErrorMessages = () => {
     return dispatch => {
         dispatch({type: Type.removeErrorMess })
-    }
-}
-export const RS = () => {
-    return (dispatch, pervState) => {
-        console.log(pervState())
-        /* dispatch({type: Type.registered})
-        dispatch({type: Type.notRegister}) */
     }
 }

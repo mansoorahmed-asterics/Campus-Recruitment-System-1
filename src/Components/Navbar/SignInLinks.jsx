@@ -6,10 +6,13 @@ const SignInLinks = (props) => {
     return (
         <ul className="right">
             {props.status === "Company" || props.status === "Admin" ? (<li>
-                <NavLink to="/">Students</NavLink>
+                <NavLink to="/Students">Students</NavLink>
+            </li>) : (null)}
+            {props.status === "Admin" ? (<li>
+                <NavLink to="/Comapnies">Companies</NavLink>
             </li>) : (null)}
             {props.status === "Student" || props.status === "Admin" ? (<li>
-                <NavLink to="/">Vacancies</NavLink>
+                <NavLink to="/Vacancies">Vacancies</NavLink>
             </li>) : (null)}
             {props.status === "Company" ? (<li>
                 <NavLink to="/Posting">Post New Vacancy</NavLink>

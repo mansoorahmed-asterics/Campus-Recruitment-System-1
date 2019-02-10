@@ -5,6 +5,10 @@ const Profile = (props) => {
     const currentStudent = props.allStudents.find(stu => {
         return stu.userId === props.user.uid
       })
+    const currentCompany = props.allCompanies.find(com => {
+        return com.userId === props.user.uid
+      })
+
     return (
         <div className="container">
             <br />
@@ -68,33 +72,29 @@ const Profile = (props) => {
                     <div className="card">
                         <div className="card-content">
                             <div className="card-title orange-text">
-                                Company Details
+                                COMPANY'S INFORMATION
                             </div>
                             <table>
                                 <tbody>
                                     <tr>
                                         <th className="grey-text">Comapny Name</th>
-                                        <td>{}</td>
+                                        <td>{currentCompany.cname}</td>
                                     </tr>
                                     <tr>
                                         <th className="grey-text">Established</th>
-                                        <td>{}</td>
+                                        <td>{currentCompany.es}</td>
                                     </tr>
                                     <tr>
                                         <th className="grey-text">HR Name</th>
-                                        <td>{}</td>
+                                        <td>{currentCompany.hrname}</td>
                                     </tr>
                                     <tr>
                                         <th className="grey-text">Email</th>
-                                        <td>{}</td>
+                                        <td>{currentCompany.email}</td>
                                     </tr>
                                     <tr>
                                         <th className="grey-text">Conatct Number</th>
-                                        <td>{}</td>
-                                    </tr>
-                                    <tr>
-                                        <th className="grey-text">Company ID</th>
-                                        <td>{}</td>
+                                        <td>{currentCompany.cnum}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -140,6 +140,7 @@ const mapStateToProps = (state) => {
         user: state.auth.currentUser,
         status: state.auth.status,
         allStudents: state.student.allStudents,
+        allCompanies: state.company.allCompanies,
 
         UserProfilePictureFlag: false,
         UserProfilePictureURL: "",

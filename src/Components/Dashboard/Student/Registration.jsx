@@ -175,7 +175,7 @@ class Registration extends Component {
             <Fragment>
                 {this.props.currentUser ? (
                     <Fragment>
-                        {this.props.edit ? (null) : (<nav className="nav-wrapper orange darken-4">
+                        {this.state.edit ? (null) : (<nav className="nav-wrapper orange darken-4">
                             <div className="container">
                                 <span className="brand-logo hide-on-small-only">Campus Recruitment System</span>
                                 <span className="hide-on-med-and-up">Campus Recruitment System</span>

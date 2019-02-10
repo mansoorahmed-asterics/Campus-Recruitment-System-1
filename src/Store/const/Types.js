@@ -17,5 +17,8 @@ const Type = {
     newStudent: "NEW_STUDENT",
     pervDataOfStudents: "PERVIOUS_DATA_OF_STUDENTS",
     updateStudent: "UPDATE_CURRENT_STUDENT",
+    newCompany: "NEW_COMPANY",
+    pervDataOfCompanies: "PERVIOUS_DATA_OF_COMPANIES",
+    updateCompany: "UPDATE_CURRENT_COMPANY",
 }
 export default Type;

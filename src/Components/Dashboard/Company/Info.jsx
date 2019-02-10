@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Button from '../../../UIComponents/Button';
-import { Validation, RemoveErrorMessages } from "../../../Store/Actions/StudentsAction"
 import { connect } from "react-redux";
 import InputS from '../../../UIComponents/InputS';
+import { addNewCompany, UpdateCurrentCompany } from '../../../Store/Actions/CompanyActions';
 class Info extends Component {
     constructor() {
         super();
@@ -12,62 +12,146 @@ class Info extends Component {
             HRName: "",
             Email: "",
             ContactNumber: "",
-            CompanyID: "",
+            edit: false,
+            editID: "",
         };
     }
-    whenChange = () => {
 
+    componentDidMount() {
+        if (this.props.currentUser) {
+            const userID = this.props.currentUser.uid
+            if (this.props.allCompanies) {
+                let allCompanies = this.props.allCompanies
+                let specific = allCompanies.find((com) => {
+                    return com.userId === userID
+                })
+                if (specific) {
+                    this.setState({
+                        CompanyName: specific.cname,
+                        Established: specific.es,
+                        HRName: specific.hrname,
+                        Email: specific.email,
+                        ContactNumber: specific.cnum,
+                        edit: true,
+                        editID: specific.companyID,
+                    })
+                }
+            }
+        }
     }
-    whenSubmit = () => {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.currentUser) {
+            const userID = nextProps.currentUser.uid
+            if (nextProps.allCompanies) {
+                let allCompanies = nextProps.allCompanies
+                let specific = allCompanies.find((com) => {
+                    return com.userId === userID
+                })
+                if (specific) {
+                    this.setState({
+                        CompanyName: specific.cname,
+                        Established: specific.es,
+                        HRName: specific.hrname,
+                        Email: specific.email,
+                        ContactNumber: specific.cnum,
+                        edit: true,
+                        editID: specific.companyID,
+                    })
+                }
+            }
+        }
+    }
 
+    whenChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value })
+    }
+    whenSubmit = (event) => {
+        event.preventDefault();
+        const { CompanyName,
+            Established,
+            HRName,
+            Email,
+            ContactNumber,
+        } = this.state;
+
+        if (CompanyName === "" &&
+            Established === "" &&
+            HRName === "" &&
+            Email === "" &&
+            ContactNumber === "") {
+            return;
+        }
+        else if (this.state.edit) {
+            this.props.editCompanyInfo({
+                userId: this.props.currentUser.uid,
+                cname: CompanyName,
+                es: Established,
+                hrname: HRName,
+                email: Email,
+                cnum: ContactNumber,
+            }, this.state.editID);
+        }
+        else {
+            this.props.newCompany({
+                userId: this.props.currentUser.uid,
+                cname: CompanyName,
+                es: Established,
+                hrname: HRName,
+                email: Email,
+                cnum: ContactNumber,
+            })
+        }
     }
     render() {
-        console.log(this.props)
         return (
             <Fragment>
-                {this.props.currentUser ? (<div>
+                {this.props.currentUser ? (<Fragment>
+                    {this.state.edit ? (null) : (<nav className="nav-wrapper orange darken-4">
+                        <div className="container">
+                            <span className="brand-logo hide-on-small-only">Campus Recruitment System</span>
+                            <span className="hide-on-med-and-up">Campus Recruitment System</span>
+                        </div>
+                    </nav>)}
                     <div className="container">
+                        <br />
                         <div className="row">
                             <div className="col l8 s12 offset-l2">
-                               <div className="card">
-                               <form onSubmit={this.whenSubmit}>
-                                    <div className="card-content">
-                                        <div className="card-title orange-text text-darken-2 center">
-                                            
-                                            Company Registration Form  
-                                            
+                                <div className="card">
+                                    <form onSubmit={this.whenSubmit}>
+                                        <div className="card-content">
+                                            <div className="card-title orange-text text-darken-2 center">
+                                                Company Registration Form
                                         </div>
-                                        <InputS t="text" l="Comapny Name" n="CompanyName" v={this.state.CompanyName} oc={this.whenChange} d="cname" f="cname"/>
-                                        <InputS t="text" l="Established" n="Established" v={this.state.Established} oc={this.whenChange} d="es" f="es"/>
-                                        <InputS t="text" l="HR Name" n="HRName" v={this.state.HRName} oc={this.whenChange} d="hrname" f="hrname"/>
-                                        <InputS t="email" l="Email" n="Email" v={this.state.Email} oc={this.whenChange} d="email" f="email"/>
-                                        <InputS t="number" l='Contact Number' n="ConatactNumber" v={this.state.ContactNumber}  oc={this.whenChange} d="cn" f="cn" />
-                                        <InputS t="number" l="Company ID" n="CompanyID" v={this.state.CompanyID} oc={this.whenChange} d="cid" f="cid"/>
-                                        <div className="card-action">
-                                        <Button cn="btn-small  orange darken-1" t="Register"/>
+                                            <InputS edit={this.state.edit} t="text" l="Comapny Name" n="CompanyName" v={this.state.CompanyName} oc={this.whenChange} d="cname" f="cname" />
+                                            <InputS edit={this.state.edit} t="text" l="Established" n="Established" v={this.state.Established} oc={this.whenChange} d="es" f="es" />
+                                            <InputS edit={this.state.edit} t="text" l="HR Name" n="HRName" v={this.state.HRName} oc={this.whenChange} d="hrname" f="hrname" />
+                                            <InputS edit={this.state.edit} t="email" l="Email" n="Email" v={this.state.Email} oc={this.whenChange} d="email" f="email" />
+                                            <InputS edit={this.state.edit} t="number" l='Contact Number' n="ContactNumber" v={this.state.ContactNumber} oc={this.whenChange} d="cn" f="cn" />
+                                            <div className="card-action">
+                                                <Button cn="btn-small  orange darken-1" t="Register" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>) : (null)}
+                </Fragment>) : (null)}
             </Fragment>
         );
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        valide: (message) => dispatch(Validation(message)),
-        error: () => dispatch(RemoveErrorMessages()),
+        newCompany: (obj) => dispatch(addNewCompany(obj)),
+        editCompanyInfo: (obj, editID) => dispatch(UpdateCurrentCompany(obj, editID)),
     }
 }
 const mapStateToProps = (state) => {
     return {
         currentUser: state.auth.currentUser,
-        errmess: state.student.vErrorMessage,
-        errFlag: state.student.vErrorFlag,
+        allCompanies: state.company.allCompanies,
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Info);
