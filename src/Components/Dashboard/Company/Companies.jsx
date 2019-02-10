@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 class Companies extends Component {
     constructor(props) {
         super(props);
@@ -6,9 +7,13 @@ class Companies extends Component {
     }
     render() {
         return (
-            <div></div>
+            <div>{this.props.user ? (<></>) : (null)}</div>
         );
     }
 }
-
-export default Companies;
+const mapStateToProps = (state) => {
+    return {
+        user: state.auth.currentUser,
+    }
+}
+export default connect(mapStateToProps,)(Companies);

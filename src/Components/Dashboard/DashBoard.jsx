@@ -1,13 +1,7 @@
 import React, { Component} from 'react';
 import SignUpLinks from '../Navbar/SignUpLinks';
 import Footer from '../Footer/Footer';
-class DashBoard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  };
-    }
-    
-    render() {
+const DashBoard = (props) => {
         return (
             <div className="mainPage">
             <br/>
@@ -22,7 +16,7 @@ class DashBoard extends Component {
                     Welcome to Campus Recruitment System 
                 </h6>
                 <p className="flow-text center">Please select one, in order to SignUp/SignIn.</p>
-                <SignUpLinks props={this.props}/>
+                <SignUpLinks props={props}/>
                 <br/>
                 <br/>
                 <Footer />
@@ -30,7 +24,6 @@ class DashBoard extends Component {
             </div>
             </div>
         );
-    }
 }
 
 export default DashBoard;

@@ -14,7 +14,8 @@ import Profile from './Components/Dashboard/UserProfile/Profile';
 import {PervDataOfStudents} from "./Store/Actions/StudentsAction";
 import Students from './Components/Dashboard/Student/Students';
 import Companies from './Components/Dashboard/Company/Companies';
-import Vacancies from "./Components/Dashboard/Company/Vacancies";
+import SDetails from "./Components/Dashboard/Student/SDetails";
+import CDetails from "./Components/Dashboard/Company/CDetails";
 import { PervDataOfCompanies } from './Store/Actions/CompanyActions';
 import { PervDataOfVacancies } from './Store/Actions/VacancyActions';
 class App extends Component {
@@ -31,10 +32,10 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-                  <Route path="/Vacancies" component={Vacancies} />
                   <Route path="/Students" component={Students} />
                   <Route path="/Companies" component={Companies} />
-
+                  <Route path="/SDetails:id" component={SDetails} />
+                  <Route path="/CDetails:id" component={CDetails} />
                   <Route path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>
@@ -42,8 +43,8 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-                  <Route path="/Vacancies" component={Vacancies} />
-
+                  <Route path="/Companies" component={Companies} />
+                  <Route path="/CDetails:id" component={CDetails} />
                   <Route path="/Registration" component={Registration}/> 
                   <Route path="/Profile" component={Profile}/> 
                   <Route path="/SignOut" component={SignOut}/>
@@ -54,7 +55,7 @@ class App extends Component {
             <Navbar />
             <Switch>
                   <Route path="/Students" component={Students} />
-                  
+                  <Route path="/SDetails:id" component={SDetails} />
                   <Route path="/CompanyInfo" component={Info}/>
                   <Route path="/PostVacancy" component={PostVacancy} />
                   <Route path="/Profile" component={Profile}/> 

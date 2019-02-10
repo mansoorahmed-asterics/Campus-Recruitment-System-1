@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Button from '../../../UIComponents/Button';
 import { connect } from "react-redux";
 import InputS from '../../../UIComponents/InputS';
-import { addNewCompany, UpdateCurrentCompany, RemoveErrorMessagesC,ErrorInfoC } from '../../../Store/Actions/CompanyActions';
+import { addNewCompany, UpdateCurrentCompany, RemoveErrorMessagesC, ErrorInfoC } from '../../../Store/Actions/CompanyActions';
 class Info extends Component {
     constructor() {
         super();
@@ -84,23 +84,23 @@ class Info extends Component {
             this.props.error("Please fill this form properly!")
             return;
         }
-        else if(CompanyName === ""){
+        else if (CompanyName === "") {
             this.props.error('Please enter your company name.')
             return;
         }
-        else if(Established === ""){
+        else if (Established === "") {
             this.props.error("Please enter your company established year")
             return;
         }
-        else if(Established.length > 4 || Established.length < 4){
+        else if (Established.length > 4 || Established.length < 4) {
             this.props.error("Please enter company establish year properly.")
             return;
         }
-        else if(HRName === ""){
+        else if (HRName === "") {
             this.props.error('Please enter your HR name.')
             return;
         }
-        else if(Email === "") {
+        else if (Email === "") {
             this.props.error("Please enter your valide email address.")
             return;
         }
@@ -166,7 +166,10 @@ class Info extends Component {
                                             <InputS edit={this.state.edit} t="email" l="Email" n="Email" v={this.state.Email} oc={this.whenChange} d="email" f="email" />
                                             <InputS edit={this.state.edit} t="number" l='Contact Number' n="ContactNumber" v={this.state.ContactNumber} oc={this.whenChange} d="cn" f="cn" />
                                             <div className="card-action">
-                                                <Button cn="btn-small  orange darken-1" t="Register" />
+                                                {this.state.edit ? (
+                                                    <Button cn="btn-large  orange darken-1" t="Update" />
+                                                ) : (
+                                                    <Button cn="btn-large  orange darken-1" t="Register" />)}
                                             </div>
                                         </div>
                                     </form>

@@ -5,11 +5,19 @@ import { LOGOUT } from "../../Store/Actions/authActions"
 
 const SignOut = (props) => {
     const whenClick = () => {
-        props.history.push('/')
+        props.history.push("/")
         props.logOut()
     }
     const WhenClick = () => {
-        props.history.push('/')
+        if (props.Status === "Admin") {
+            props.history.push('/Students')
+        }
+        else if (props.Status === "Student") {
+            props.history.push('/Students')
+        }
+        else if (props.Status === "Company") {
+            props.history.push('/Companies')
+        }
     }
     return (<Fragment>
         {props.User ? (<div className="container">
@@ -32,19 +40,20 @@ const SignOut = (props) => {
                 </div>
             </div>
         </div>) : (null)}</Fragment>
-        
+
     )
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return{
+    return {
         logOut: () => dispatch(LOGOUT())
     }
 }
 const mapStateToProps = (state) => {
-    return{
-        User:state.auth.currentUser
+    return {
+        User: state.auth.currentUser,
+        Status: state.auth.status,
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SignOut);
+export default connect(mapStateToProps, mapDispatchToProps)(SignOut);

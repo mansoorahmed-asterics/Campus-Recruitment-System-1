@@ -1,77 +1,84 @@
 import React from 'react'
 import { connect } from "react-redux";
 import DefaultPic from '../../../defaultPic.jpg';
+import DefaultPicC from "../../../defaultPicC.jpg";
 const Profile = (props) => {
     const currentStudent = props.allStudents.find(stu => {
         return stu.userId === props.user.uid
-      })
+    })
     const currentCompany = props.allCompanies.find(com => {
         return com.userId === props.user.uid
-      })
+    })
     const currentCompanyVacancies = props.allVacancies.filter(van => {
         return van.userId === props.user.uid
-      })
+    })
     return (
         <div>
             <br />
             <br />
             {props.user ? (props.status === "Student" ? (<div className="container">
-            <div className="row">
-                <div className="col s12 m8 l6 offset-l3 offset-m2">
-                    <div className="card orange lighten-5">
-                        <div className="card-image">
-                            <img src={DefaultPic} alt="user-profile" className="pImage" />
-                            <span className="card-title orange-text text-darken-4">Student Profile</span>
-                            <span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => {props.history.push("/Registration")}}><i className="material-icons">add</i></span>
-                        </div>
-                        <div className="card-content">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th className="grey-text">First Name:</th>
-                                        <td>{currentStudent.firstName}</td>
-                                    </tr>
-                                    <tr>
-                                        <th className="grey-text">Sir Name:</th>
-                                        <td>{currentStudent.lastName}</td>
-                                    </tr>
-                                    <tr>
-                                        <th className="grey-text">Age:</th>
-                                        <td>{currentStudent.age}</td>
-                                    </tr>
-                                    <tr>
-                                        <th className="grey-text">Gender:</th>
-                                        <td>{currentStudent.gender}</td>
-                                    </tr>
-                                    <tr>
-                                        <th className="grey-text">Qualification:</th>
-                                        <td>{currentStudent.qua}</td>
-                                    </tr>
-                                    <tr>
-                                        <th className="grey-text">Skills:</th>
-                                        <td>{currentStudent.skills}</td>
-                                    </tr>
-                                    <tr>
-                                        <th className="grey-text">Department:</th>
-                                        <td>{currentStudent.dep}</td>
-                                    </tr>
-                                    <tr>
-                                        <th className="grey-text">Email:</th>
-                                        <td>{currentStudent.email}</td>
-                                    </tr>
-                                    <tr>
-                                        <th className="grey-text">Contact Number: </th>
-                                        <td>{currentStudent.phoneNumber}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div className="row">
+                    <div className="col s12 m8 l6 offset-l3 offset-m2">
+                        <div className="card orange lighten-5">
+                            <div className="card-image">
+                                <img src={DefaultPic} alt="user-profile" className="pImage" />
+                                <span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/Registration") }}><i className="material-icons">add</i></span>
+                            </div>
+                            <div className="card-content">
+                            <div className="card-title orange-text">
+                                STUDENT'S PROFILE
+                            </div>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th className="grey-text">First Name:</th>
+                                            <td>{currentStudent.firstName}</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="grey-text">Sir Name:</th>
+                                            <td>{currentStudent.lastName}</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="grey-text">Age:</th>
+                                            <td>{currentStudent.age}</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="grey-text">Gender:</th>
+                                            <td>{currentStudent.gender}</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="grey-text">Qualification:</th>
+                                            <td>{currentStudent.qua}</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="grey-text">Skills:</th>
+                                            <td>{currentStudent.skills}</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="grey-text">Department:</th>
+                                            <td>{currentStudent.dep}</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="grey-text">Email:</th>
+                                            <td>{currentStudent.email}</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="grey-text">Contact Number: </th>
+                                            <td>{currentStudent.phoneNumber}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>) : (<div className="row">
                 <div className="col l4 s12 offset-l1">
                     <div className="card">
+                        <div className="card-image">
+                            <img src={DefaultPicC} alt="user-profile" className="pImage" />
+                            <span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/CompanyInfo") }}><i className="material-icons">add</i></span>
+                        </div>
                         <div className="card-content">
                             <div className="card-title orange-text">
                                 COMPANY'S INFORMATION
@@ -113,25 +120,25 @@ const Profile = (props) => {
                                 <thead>
                                     <tr>
                                         <th className="orange-text">
-                                        Job Name
+                                            Job Name
                                         </th>
                                         <th className="orange-text">
-                                        Job description
+                                            Job description
                                         </th>
                                         <th className="orange-text">
-                                        Salary
+                                            Salary
                                         </th>
                                         <th className="orange-text">
-                                        Eligibility Criteria
+                                            Eligibility Criteria
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {currentCompanyVacancies.map(v => <tr key={v.postId}>
-                                    <td>{v.jobname}</td>
-                                    <td>{v.jobdes}</td>
-                                    <td>{v.salary}</td>
-                                    <td>{v.ec}</td>
+                                        <td>{v.jobname}</td>
+                                        <td>{v.jobdes}</td>
+                                        <td>{v.salary}</td>
+                                        <td>{v.ec}</td>
                                     </tr>)}
                                 </tbody>
                             </table>) : (<div className="red-text">You didn't post any vacancy yet!</div>)}
@@ -151,8 +158,4 @@ const mapStateToProps = (state) => {
         allVacancies: state.vacancy.allVacancies,
     }
 }
-const mapStateToDispatch = () => {
-    return {
-    }
-}
-export default connect(mapStateToProps, mapStateToDispatch)(Profile);
+export default connect(mapStateToProps)(Profile);
