@@ -18,6 +18,7 @@ import SDetails from "./Components/Dashboard/Student/SDetails";
 import CDetails from "./Components/Dashboard/Company/CDetails";
 import { PervDataOfCompanies } from './Store/Actions/CompanyActions';
 import { PervDataOfVacancies } from './Store/Actions/VacancyActions';
+import Vacancies from './Components/Dashboard/Company/Vacancies';
 class App extends Component {
   componentDidMount = () => {
     this.props.currentUser();
@@ -34,6 +35,7 @@ class App extends Component {
             <Switch>
                   <Route path="/Students" component={Students} />
                   <Route path="/Companies" component={Companies} />
+                  <Route path="/Vacancies" component={Vacancies} />
                   <Route path="/SDetails/:id" component={SDetails} />
                   <Route path="/CDetails/:id" component={CDetails} />
                   <Route path="/SignOut" component={SignOut}/>
@@ -43,7 +45,7 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-                  <Route path="/Companies" component={Companies} />
+                  <Route path="/Vacancies" component={Vacancies} />
                   <Route path="/CDetails/:id" component={CDetails} />
                   <Route path="/Registration" component={Registration}/> 
                   <Route path="/Profile" component={Profile}/> 

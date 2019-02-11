@@ -13,7 +13,7 @@ const SignOut = (props) => {
             props.history.push('/Students')
         }
         else if (props.Status === "Student") {
-            props.history.push('/Companies')
+            props.history.push('/Vacancies')
         }
         else if (props.Status === "Company") {
             props.history.push('/Students')
