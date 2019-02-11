@@ -1,29 +1,115 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
+import Loader from "../../Loader/loader";
+import Department from "../../../UIComponents/Department";
 
 class Students extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
+  constructor() {
+    super();
+    this.state = {
+      depSelected: "",
+      selectedDepArray: null,
+      showSpecificStudents: false,
+      showAllStudents: true,
     }
-    render() {
-        return (
-            <div>
-                {this.props.user ? (<div className="container">
+  }
 
-                </div>) : (null)}
-            </div>
-        );
+  onChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value })
+    const allStudents = this.props.allStudents;
+    const Tem = allStudents.filter( v => v.dep === value)
+    this.setState({
+      selectedDepArray: Tem,
+      showSpecificStudents: true,
+      showAllStudents: false,
+    })
+  }
+
+  showAll = () => {
+    this.setState({
+      depSelected: "",
+      selectedDepArray: null,
+      showSpecificStudents: false,
+      showAllStudents: true,
+    })
+  }
+
+  details = (id) => {
+    this.props.history.push(`/SDetails/${id}`)
+  }
+
+  render() {
+    return (<Fragment>{
+      this.props.User ? (
+        <Fragment>
+          {
+            this.props.pervData ? (
+              <div className="container">
+                <ul className="collection with-header">
+                  <li className="collection-header"><h2>Find Students</h2></li>
+                  {this.props.allStudents.length > 0 ? (
+                    <Fragment>
+                      <li className="collection-item">
+                        <Department text="Select Department" f="selectD" id="selectD" n="depSelected" v={this.state.depSelected} oc={this.onChange} />
+                        {this.state.showSpecificStudents ?
+                          (<div className="center">
+                            <button className="btn-small orange darken-1" onClick={this.showAll}>All Students</button>
+                          </div>) : null
+                        }
+                      </li>
+                      {this.state.showAllStudents ? (
+                        this.props.allStudents.map((stu, index) => {
+                          return (
+                            <li key={index} className="collection-item avatar">
+                              <i className="btn btn-floating material-icons circle" onClick={() => this.details(stu.id)}>person</i>
+                              <span className="title">{stu.firstName}</span>
+                              <p className="grey-text">{stu.dep}</p>
+                            </li>)
+                        })) : (null)
+                      }
+                      {this.state.showSpecificStudents ? (
+                        <Fragment>
+                          {this.state.selectedDepArray.length > 0 ? (
+                            this.state.selectedDepArray.map((stu, index) => {
+                              return (
+                                <li key={index} className="collection-item avatar">
+                                  <i className="btn btn-floating material-icons circle" onClick={() => this.details(stu.id)}>person</i>
+                                  <span className="title">{stu.firstName}</span>
+                                  <p className="grey-text">{stu.dep}</p>
+                                </li>
+                              )
+                            })
+                          ) : (
+                              <div className="center grey-text flow-text">
+                                Sorry, No Student available.
+                              </div>)}
+                        </Fragment>
+                      ) : (null)
+                      }
+                    </Fragment>
+      
+                  ) : (
+                      <div> <br /> <br />
+                        <div className="center grey-text flow-text">
+                          Sorry, No Student available.
+                          </div>
+                      </div>)
+                  }
+                </ul>
+              </div>) : (<Loader />)
+          }
+        </Fragment>
+        ) : (null)
     }
+    </Fragment>)
+  }
 }
 const mapStateToProps = (state) => {
-    return {
-        user: state.auth.currentUser,
-    }
+  return {
+    allStudents: state.student.allStudents,
+    pervData: state.student.pervDataOfStudents,
+    User: state.auth.currentUser,
+  }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Students);
+export default connect(mapStateToProps, null)(Students)

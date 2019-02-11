@@ -34,8 +34,8 @@ class App extends Component {
             <Switch>
                   <Route path="/Students" component={Students} />
                   <Route path="/Companies" component={Companies} />
-                  <Route path="/SDetails:id" component={SDetails} />
-                  <Route path="/CDetails:id" component={CDetails} />
+                  <Route path="/SDetails/:id" component={SDetails} />
+                  <Route path="/CDetails/:id" component={CDetails} />
                   <Route path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>
@@ -44,7 +44,7 @@ class App extends Component {
             <Navbar />
             <Switch>
                   <Route path="/Companies" component={Companies} />
-                  <Route path="/CDetails:id" component={CDetails} />
+                  <Route path="/CDetails/:id" component={CDetails} />
                   <Route path="/Registration" component={Registration}/> 
                   <Route path="/Profile" component={Profile}/> 
                   <Route path="/SignOut" component={SignOut}/>
@@ -55,7 +55,7 @@ class App extends Component {
             <Navbar />
             <Switch>
                   <Route path="/Students" component={Students} />
-                  <Route path="/SDetails:id" component={SDetails} />
+                  <Route path="/SDetails/:id" component={SDetails} />
                   <Route path="/CompanyInfo" component={Info}/>
                   <Route path="/PostVacancy" component={PostVacancy} />
                   <Route path="/Profile" component={Profile}/> 

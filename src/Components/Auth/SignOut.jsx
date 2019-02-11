@@ -13,10 +13,10 @@ const SignOut = (props) => {
             props.history.push('/Students')
         }
         else if (props.Status === "Student") {
-            props.history.push('/Students')
+            props.history.push('/Companies')
         }
         else if (props.Status === "Company") {
-            props.history.push('/Companies')
+            props.history.push('/Students')
         }
     }
     return (<Fragment>
