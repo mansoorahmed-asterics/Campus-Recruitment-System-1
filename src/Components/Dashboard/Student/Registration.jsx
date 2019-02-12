@@ -4,6 +4,7 @@ import Button from '../../../UIComponents/Button';
 import Department from "../../../UIComponents/Department"
 import { connect } from "react-redux"
 import { addNewStudent, UpdateCurrentStudent, Validation, RemoveErrorMessages } from "../../../Store/Actions/StudentsAction"
+import { UpdationRequest } from '../../../Store/Actions/AdminActions';
 class Registration extends Component {
     constructor() {
         super();
@@ -143,7 +144,7 @@ class Registration extends Component {
             return;
         }
         else if (this.state.edit) {
-            this.props.editStudent({
+            /* this.props.editStudent({
                 userId: this.props.currentUser.uid,
                 firstName: Name, lastName: LName,
                 age: Age,
@@ -151,7 +152,18 @@ class Registration extends Component {
                 gender: Gender, phoneNumber: Phone,
                 email: Email, qua: Qualification,
                 dep: Department,
-            }, this.state.editID)
+            }, this.state.editID) */
+            this.props.UpdateRequest({
+                userId: this.props.currentUser.uid,
+                firstName: Name, lastName: LName,
+                age: Age,
+                skills: Skills,
+                gender: Gender, phoneNumber: Phone,
+                email: Email, qua: Qualification,
+                dep: Department,
+                editId: this.state.editID,
+                status: this.props.status,
+            })
         }
         else {
             this.props.newStudent({
@@ -248,9 +260,10 @@ class Registration extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         newStudent: (obj) => dispatch(addNewStudent(obj)),
-        editStudent: (obj, editID) => dispatch(UpdateCurrentStudent(obj, editID)),
+        /* editStudent: (obj, editID) => dispatch(UpdateCurrentStudent(obj, editID)), */
         valide: (message) => dispatch(Validation(message)),
         error: () => dispatch(RemoveErrorMessages()),
+        UpdateRequest: (sdata) => dispatch(UpdationRequest(sdata)),
     }
 }
 const mapStateToProps = (state) => {
@@ -259,6 +272,7 @@ const mapStateToProps = (state) => {
         errmess: state.student.vErrorMessage,
         errFlag: state.student.vErrorFlag,
         allStudents: state.student.allStudents,
+        status: state.auth.status,
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

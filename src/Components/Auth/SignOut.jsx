@@ -10,7 +10,7 @@ const SignOut = (props) => {
     }
     const WhenClick = () => {
         if (props.Status === "Admin") {
-            props.history.push('/Students')
+            props.history.push('/UpdationRequest')
         }
         else if (props.Status === "Student") {
             props.history.push('/Vacancies')

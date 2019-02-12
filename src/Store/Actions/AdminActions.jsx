@@ -34,3 +34,15 @@ export const BlockList = () => {
         })
     }
 }
+export const UpdationRequest = (data) => {
+    return dispatch => {
+        if(data.status === "Student"){
+            console.log(data)
+            firebase.database().ref().child("UpdationRequest").child("Student").push(data)
+        }
+        if(data.status === "Company"){
+            console.log(data)
+            firebase.database().ref().child("UpdationRequest").child("Company").push(data)
+        }
+    }
+}

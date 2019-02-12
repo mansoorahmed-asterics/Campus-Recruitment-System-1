@@ -50,6 +50,15 @@ class SignUP_IN extends Component {
             }
             this.props.signUp(this.state.UserEmail, this.state.UserPass, this.state.Status)
         }
+        if (this.state.Status === "Admin") {
+            this.props.history.push('/UpdationRequest')
+        }
+        else if (this.state.Status === "Student") {
+            this.props.history.push('/Vacancies')
+        }
+        else if (this.state.Status === "Company") {
+            this.props.history.push('/Students')
+        }
     }
 
     whenChange = (event) => {

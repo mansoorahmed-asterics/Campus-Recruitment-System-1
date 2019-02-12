@@ -5,6 +5,9 @@ const SignInLinks = (props) => {
     const char = props.email.slice(0, 1)
     return (
         <ul className="right">
+            {props.status === "Admin" ? (<li>
+            <NavLink to="/UpdationRequest">Requests</NavLink>
+            </li>) : (null)}
             {props.status === "Company" || props.status === "Admin" ? (<li>
                 <NavLink to="/Students">Students</NavLink>
             </li>) : (null)}

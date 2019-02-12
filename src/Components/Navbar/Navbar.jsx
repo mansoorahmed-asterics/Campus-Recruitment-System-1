@@ -27,6 +27,9 @@ class Navbar extends Component {
               {this.props.User ? (this.props.User.email) : (null)}
             </h6>
           </li>
+          {this.props.status === "Admin" ? (<li className="collection-item">
+            <NavLink to="/UpdationRequest" className="orange-text">Requests</NavLink>
+          </li>) : (null)}
           {this.props.status === "Company" || this.props.status === "Admin" ? (<li className="collection-item">
             <NavLink to="/Students" className="orange-text">Students</NavLink>
           </li>) : (null)}

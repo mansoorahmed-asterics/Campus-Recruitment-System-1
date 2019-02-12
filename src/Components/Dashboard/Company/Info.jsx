@@ -3,6 +3,7 @@ import Button from '../../../UIComponents/Button';
 import { connect } from "react-redux";
 import InputS from '../../../UIComponents/InputS';
 import { addNewCompany, UpdateCurrentCompany, RemoveErrorMessagesC, ErrorInfoC } from '../../../Store/Actions/CompanyActions';
+import { UpdationRequest } from '../../../Store/Actions/AdminActions';
 class Info extends Component {
     constructor() {
         super();
@@ -119,14 +120,22 @@ class Info extends Component {
             return;
         }
         else if (this.state.edit) {
-            this.props.editCompanyInfo({
+            /* this.props.editCompanyInfo({
                 userId: this.props.currentUser.uid,
                 cname: CompanyName,
                 es: Established,
                 hrname: HRName,
                 email: Email,
                 cnum: ContactNumber,
-            }, this.state.editID);
+            }, this.state.editID); */
+            this.props.UpdateRequest({userId: this.props.currentUser.uid,
+                cname: CompanyName,
+                es: Established,
+                hrname: HRName,
+                email: Email,
+                cnum: ContactNumber,
+                editId:this.state.editID, 
+                status: this.props.status});
         }
         else {
             this.props.newCompany({
@@ -184,10 +193,11 @@ class Info extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        newCompany: (obj) => dispatch(addNewCompany(obj)),
-        editCompanyInfo: (obj, editID) => dispatch(UpdateCurrentCompany(obj, editID)),
+        newCompany: obj => dispatch(addNewCompany(obj)),
+        /* editCompanyInfo: (obj, editID) => dispatch(UpdateCurrentCompany(obj, editID)), */
         removeError: () => dispatch(RemoveErrorMessagesC()),
-        error: (mess) => dispatch(ErrorInfoC(mess))
+        error: mess => dispatch(ErrorInfoC(mess)),
+        UpdateRequest: cdata => dispatch(UpdationRequest(cdata)),
     }
 }
 const mapStateToProps = (state) => {
@@ -196,6 +206,7 @@ const mapStateToProps = (state) => {
         allCompanies: state.company.allCompanies,
         errorMessageC: state.company.errorMessage,
         errorFlag: state.company.errorFlag,
+        status: state.auth.status,
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Info);

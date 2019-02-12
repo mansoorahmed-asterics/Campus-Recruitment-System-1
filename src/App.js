@@ -19,7 +19,8 @@ import { PervDataOfCompanies } from './Store/Actions/CompanyActions';
 import { PervDataOfVacancies } from './Store/Actions/VacancyActions';
 import Vacancies from './Components/Dashboard/Company/Vacancies';
 import { BlockList} from './Store/Actions/AdminActions';
-import Blocked from './Components/Admin/Blocked';
+import Blocked from './Components/Dashboard/Admin/Blocked';
+import Request from './Components/Dashboard/Admin/Request';
 class App extends Component {
   componentDidMount = () => {
     this.props.currentUser();
@@ -35,6 +36,7 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
+                  <Route path="/UpdationRequest" component={Request}/>
                   <Route path="/Students" component={Students} />
                   <Route path="/Vacancies" component={Vacancies} />
                   <Route path="/SDetails/:id" component={SDetails} />

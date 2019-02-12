@@ -1,5 +1,5 @@
 import React from 'react';
-import Type from '../../Store/const/Types';
+import Type from '../../../Store/const/Types';
 import { connect } from "react-redux";
 const Blocked = (props) => {
     return (
