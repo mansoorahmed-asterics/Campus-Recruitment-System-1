@@ -22,3 +22,15 @@ export const BlockC = (CompanyId, ComapnyUserId) => {
         dispatch({type: Type.blockc})
     }
 }
+export const BlockList = () => {
+    return dispatch => {
+        firebase.database().ref().child("BlockList").on("value", (snapshot) => {
+            const data = snapshot.val()
+            const TemArr = []
+            for (let key in data) {
+                TemArr.push(data[key])
+            }
+            dispatch({type: Type.blockList, blockData: TemArr  })
+        })
+    }
+}

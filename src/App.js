@@ -18,12 +18,15 @@ import CDetails from "./Components/Dashboard/Company/CDetails";
 import { PervDataOfCompanies } from './Store/Actions/CompanyActions';
 import { PervDataOfVacancies } from './Store/Actions/VacancyActions';
 import Vacancies from './Components/Dashboard/Company/Vacancies';
+import { BlockList} from './Store/Actions/AdminActions';
+import Blocked from './Components/Admin/Blocked';
 class App extends Component {
   componentDidMount = () => {
     this.props.currentUser();
     this.props.pervDataOfStudents();
     this.props.pervDataOfCompanies();
     this.props.pervDataOfVacancies();
+    this.props.pervDataOfBlockList();
   }
   render() {
     return (
@@ -62,13 +65,12 @@ class App extends Component {
                   <Route path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>
-        </Router>) : (<Info />)))) : (
-            <Router>
+        </Router>) : (<Info />)))) : (this.props.userIsBlocked ? (<Blocked/>): (<Router>
               <Fragment>
                   <Route exact path="/" component={DashBoard} />
                   <Route exact path="/SignUp" component={SignUP_IN}/>
               </Fragment>
-            </Router>)}
+            </Router>))}
       </div>
     );
   }
@@ -79,12 +81,12 @@ const mapStateToProps = (state) => {
   const status = state.auth.currentUser ? state.auth.status : null
   const regS = state.auth.currentUser ? state.student.allStudents.find(v => v.userId === user.uid) : null
   const regC = state.auth.currentUser ? state.company.allCompanies.find(v => v.userId === user.uid) : null
-
   return {
     User: user,
     Status: status,
     regS:regS, 
     regC:regC,
+    userIsBlocked: state.admin.userIsBlocked,
   }
 }
 
@@ -94,6 +96,7 @@ const mapDispatchToProps = (dispatch) => {
     pervDataOfStudents: () => dispatch(PervDataOfStudents()),
     pervDataOfCompanies: () => dispatch(PervDataOfCompanies()),
     pervDataOfVacancies: () => dispatch(PervDataOfVacancies()),
+    pervDataOfBlockList: () => dispatch(BlockList()),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -5,6 +5,7 @@ import { combineReducers } from "redux";
 import StudentsReducer from "./StudentsReducer";
 import CompanyReducer from "./CompanyReducer";
 import VacancyReducer from "./VacancyReducer";
+import AdminReducer from "./AdminReducer";
 const rootReducer = combineReducers({
     signIn: SignInReducer,
     signUp: SignUpReducer,
@@ -12,5 +13,6 @@ const rootReducer = combineReducers({
     student: StudentsReducer, 
     company: CompanyReducer,
     vacancy: VacancyReducer,
+    admin: AdminReducer,
 })
 export default rootReducer;

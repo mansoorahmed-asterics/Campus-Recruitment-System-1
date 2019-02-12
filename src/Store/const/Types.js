@@ -28,5 +28,8 @@ const Type = {
     pervDataOfVacancies: "PERVIOUS_DATA_OF_VACANCIES",
     blockc: "BLOCK_STUDENT",
     blocks: "BLOCK_COMPANY",
+    blockList: "BLOCK_LIST",
+    userIsBlocked: "USER_IS_BLOCKED",
+    userIsNotBlocked: "USER_IS_NOT_BLOCKED",
 }
 export default Type;
