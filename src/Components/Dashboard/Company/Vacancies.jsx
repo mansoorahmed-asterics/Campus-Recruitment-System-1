@@ -4,7 +4,6 @@ const Vacancies = (props) => {
    const details = (id) => {
         props.history.push(`/CDetails/${id}`)
       }
-    console.log(props.allVacancies)
     return (<Fragment>
         <div className="container hide-on-small-only"> <br/> <br/> {props.user ? (props.allVacancies.length > 0 ? (<div className="row">
     <div className="col l12 s12 m12">
@@ -47,9 +46,8 @@ const Vacancies = (props) => {
         </table>
     </div>    
     </div>) : (<div className="center">
-        <h3 className="teal-text text-darken-1">Any Company hasn't posted vacancy yet!</h3>
+        <h5 className="orange-text text-darken-1">No Company has posted any vacancy yet!</h5>
     </div>)) : (null)}</div>
-    
     <div className="hide-on-med-and-up"> <br/> <br/> {props.user ? (props.allVacancies.length > 0 ? (<div className="row">
         <div className="col l12 s12 m12">
         <table><thead className="orange darken-3 z-depth-1">
@@ -91,7 +89,7 @@ const Vacancies = (props) => {
             </table>
         </div>    
         </div>) : (<div className="center">
-            <h3 className="teal-text text-darken-1">Any Company hasn't posted vacancy yet!</h3>
+        <h5 className="orange-text text-darken-1">No Company has posted any vacancy yet!</h5>
         </div>)) : (null)}</div>
     </Fragment>
         

@@ -13,7 +13,6 @@ import PostVacancy from './Components/Dashboard/Company/PostVacancy';
 import Profile from './Components/Dashboard/UserProfile/Profile';
 import {PervDataOfStudents} from "./Store/Actions/StudentsAction";
 import Students from './Components/Dashboard/Student/Students';
-import Companies from './Components/Dashboard/Company/Companies';
 import SDetails from "./Components/Dashboard/Student/SDetails";
 import CDetails from "./Components/Dashboard/Company/CDetails";
 import { PervDataOfCompanies } from './Store/Actions/CompanyActions';
@@ -34,7 +33,6 @@ class App extends Component {
             <Navbar />
             <Switch>
                   <Route path="/Students" component={Students} />
-                  <Route path="/Companies" component={Companies} />
                   <Route path="/Vacancies" component={Vacancies} />
                   <Route path="/SDetails/:id" component={SDetails} />
                   <Route path="/CDetails/:id" component={CDetails} />
@@ -81,9 +79,7 @@ const mapStateToProps = (state) => {
   const status = state.auth.currentUser ? state.auth.status : null
   const regS = state.auth.currentUser ? state.student.allStudents.find(v => v.userId === user.uid) : null
   const regC = state.auth.currentUser ? state.company.allCompanies.find(v => v.userId === user.uid) : null
-  console.log("Students",state.student.allStudents);
-  console.log("Companies",state.company.allCompanies);
-  console.log("Vacancies",state.vacancy.allVacancies); 
+
   return {
     User: user,
     Status: status,

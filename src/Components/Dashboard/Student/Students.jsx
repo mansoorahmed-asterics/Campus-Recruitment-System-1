@@ -62,7 +62,7 @@ class Students extends Component {
                         this.props.allStudents.map((stu, index) => {
                           return (
                             <li key={index} className="collection-item avatar">
-                              <i className="btn btn-floating material-icons circle" onClick={() => this.details(stu.id)}>person</i>
+                              <i className="btn btn-floating orange material-icons circle" onClick={() => this.details(stu.id)}>person</i>
                               <span className="title">{stu.firstName}</span>
                               <p className="grey-text">{stu.dep}</p>
                             </li>)
@@ -74,7 +74,7 @@ class Students extends Component {
                             this.state.selectedDepArray.map((stu, index) => {
                               return (
                                 <li key={index} className="collection-item avatar">
-                                  <i className="btn btn-floating material-icons circle" onClick={() => this.details(stu.id)}>person</i>
+                                  <i className="btn btn-floating orange material-icons circle" onClick={() => this.details(stu.id)}>person</i>
                                   <span className="title">{stu.firstName}</span>
                                   <p className="grey-text">{stu.dep}</p>
                                 </li>

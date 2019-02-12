@@ -26,5 +26,7 @@ const Type = {
     errorPostC: "ERROR_POST_COMPANY",
     newVacancy: "NEW_VACANCIES",
     pervDataOfVacancies: "PERVIOUS_DATA_OF_VACANCIES",
+    blockc: "BLOCK_STUDENT",
+    blocks: "BLOCK_COMPANY",
 }
 export default Type;

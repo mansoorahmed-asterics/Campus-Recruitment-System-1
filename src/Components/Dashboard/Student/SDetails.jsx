@@ -1,6 +1,7 @@
 import React,{Fragment} from 'react'
 import { connect } from "react-redux"
 import DefaultPic from '../../../defaultPic.jpg';
+import { BlockS } from '../../../Store/Actions/AdminActions';
 
 const SDetails = (props) => {
     const goBack = () => {
@@ -20,6 +21,7 @@ const SDetails = (props) => {
                         <div className="card">
                         <div className="card-image">
                                 <img src={DefaultPic} alt="user-profile" className="pImage" />
+                                {props.Status === "Admin" ? (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => {props.blockS(student.id, student.userId)}}><i className="material-icons">block</i></span>): (null)}
                             </div>
                             <div className="card-content">
                                 <div className="card-title red-text">
@@ -74,6 +76,7 @@ const SDetails = (props) => {
         </div>
     )
 }
+
 const mapStateToProps = (state, ownProps) => {
     const id = ownProps.match.params.id;
     const specific = state.student.allStudents.find((student) => {
@@ -82,6 +85,12 @@ const mapStateToProps = (state, ownProps) => {
     return {
         student: specific,
         currentUser: state.auth.currentUser,
+        Status: state.auth.status,
     }
 }
-export default connect(mapStateToProps)(SDetails)
+const mapDispactToProps = (dispatch) => {
+    return {
+        blockS: (sid, suid) => dispatch(BlockS(sid, suid)),
+    }
+}
+export default connect(mapStateToProps,mapDispactToProps)(SDetails)
