@@ -186,63 +186,63 @@ class Registration extends Component {
                                 <span className="hide-on-med-and-up">Campus Recruitment System</span>
                             </div>
                         </nav>)}
-                    <div className="container">
-                        <br />
-                        <div className="row">
-                            <div className="orange  col l12 s12 darken-1 white-text center flow-text">
-                                Student Registration Form
+                        <div className="container">
+                            <br />
+                            <div className="row">
+                                <div className="orange  col l12 s12 darken-1 white-text center flow-text">
+                                    Student Registration Form
                             </div>
-                            {this.props.errFlag ? (
-                                <div className="col l12 s12 center grey lighten-3 red-text">
-                                    <h6>{this.props.errmess}
-                                    </h6>
+                                {this.props.errFlag ? (
+                                    <div className="col l12 s12 center grey lighten-3 red-text">
+                                        <h6>{this.props.errmess}
+                                        </h6>
+                                    </div>
+                                ) : (null)}
+                                <form onSubmit={this.onAdd}>
+                                    <div className="orange col l12 s12 lighten-5">
+                                        <br />
+                                    </div>
+                                    <div className="orange col l6 s12 lighten-5">
+                                        <Input v={this.state.Name} oc={this.whenChange} t="text" f='name' d='name' l='First Name' n="Name" />
+                                    </div>
+                                    <div className="orange col l6 s12 lighten-5">
+                                        <Input v={this.state.LName} oc={this.whenChange} t="text" f='lname' d='lname' l='Sir Name' n="LName" />
+                                    </div>
+                                    <div className="orange col l6 s12 lighten-5">
+                                        <Input v={this.state.Age} oc={this.whenChange} t="number" f='age' d='age' l='Age' n="Age" />
+                                    </div>
+                                    <div className="orange col l6 s12 lighten-5">
+                                        <Input v={this.state.Gender} oc={this.whenChange} t="text" f='gender' d='gender' l='Gender' n="Gender" />
+                                    </div>
+                                    <div className="orange col l6 s12 lighten-5">
+                                        <Input v={this.state.Qualification} oc={this.whenChange} t="text" f='qua' d='qua' l='Qualification' n="Qualification" />
+                                    </div>
+                                    <div className="orange col l6 s12 lighten-5">
+                                        <Input v={this.state.Skills} oc={this.whenChange} t="text" f='skills' d='skills' l='Skills' n="Skills" />
+                                    </div>
+                                    <div className="orange col l12 s12 lighten-5">
+                                        <Department v={this.state.Department} oc={this.whenChange} text="Department" id="dep-simple" f="dep-simple" n="Department" />
+                                    </div>
+                                    <div className="orange col l6 s12 lighten-5">
+                                        <Input v={this.state.Email} oc={this.whenChange} t="email" f='email' d='email' l='Email' n="Email" />
+                                    </div>
+                                    <div className="orange col l6 s12 lighten-5">
+                                        <Input v={this.state.Phone} oc={this.whenChange} t="number" f="phn" d="phn" l="Conatct Number" n="Phone" />
+                                    </div>
+                                    <div className="col l12 s12">
+                                        &nbsp;
                                 </div>
-                            ) : (null)}
-                            <form onSubmit={this.onAdd}>
-                                <div className="orange col l12 s12 lighten-5">
+                                    <div className="col s4 l2 offset-s4 offset-l5 ">
+                                        {this.state.edit ? (
+                                            <Button cn="btn-large  orange darken-1" t="Update Request" />
+                                        ) : (
+                                                <Button cn="btn-large  orange darken-1" t="Register" />)}
+                                    </div>
                                     <br />
-                                </div>
-                                <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.Name} oc={this.whenChange} t="text" f='name' d='name' l='First Name' n="Name" />
-                                </div>
-                                <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.LName} oc={this.whenChange} t="text" f='lname' d='lname' l='Sir Name' n="LName" />
-                                </div>
-                                <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.Age} oc={this.whenChange} t="number" f='age' d='age' l='Age' n="Age" />
-                                </div>
-                                <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.Gender} oc={this.whenChange} t="text" f='gender' d='gender' l='Gender' n="Gender" />
-                                </div>
-                                <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.Qualification} oc={this.whenChange} t="text" f='qua' d='qua' l='Qualification' n="Qualification" />
-                                </div>
-                                <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.Skills} oc={this.whenChange} t="text" f='skills' d='skills' l='Skills' n="Skills" />
-                                </div>
-                                <div className="orange col l12 s12 lighten-5">
-                                    <Department v={this.state.Department} oc={this.whenChange} text="Department" id="dep-simple" f="dep-simple" n="Department" />
-                                </div>
-                                <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.Email} oc={this.whenChange} t="email" f='email' d='email' l='Email' n="Email" />
-                                </div>
-                                <div className="orange col l6 s12 lighten-5">
-                                    <Input v={this.state.Phone} oc={this.whenChange} t="number" f="phn" d="phn" l="Conatct Number" n="Phone" />
-                                </div>
-                                <div className="col l12 s12">
-                                    &nbsp;
-                                </div>
-                                <div className="col s4 l2 offset-s4 offset-l5 ">
-                                    {this.state.edit ? (
-                                        <Button cn="btn-large  orange darken-1" t="Update Request" />
-                                    ) : (
-                                        <Button cn="btn-large  orange darken-1" t="Register" />)}
-                                </div>
-                                <br />
-                                <br />
-                            </form>
+                                    <br />
+                                </form>
+                            </div>
                         </div>
-                    </div>
                     </Fragment>
                 ) : (<Loader />)}
             </Fragment>
@@ -259,7 +259,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state.auth.status)
     return {
         currentUser: state.auth.currentUser,
         errmess: state.student.vErrorMessage,

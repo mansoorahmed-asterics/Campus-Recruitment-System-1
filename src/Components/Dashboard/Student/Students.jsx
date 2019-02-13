@@ -18,7 +18,7 @@ class Students extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value })
     const allStudents = this.props.allStudents;
-    const Tem = allStudents.filter( v => v.dep === value)
+    const Tem = allStudents.filter(v => v.dep === value)
     this.setState({
       selectedDepArray: Tem,
       showSpecificStudents: true,
@@ -88,7 +88,7 @@ class Students extends Component {
                       ) : (null)
                       }
                     </Fragment>
-      
+
                   ) : (
                       <div> <br /> <br />
                         <div className="center grey-text flow-text">
@@ -100,7 +100,7 @@ class Students extends Component {
               </div>) : (<Loader />)
           }
         </Fragment>
-        ) : (<Loader />)
+      ) : (<Loader />)
     }
     </Fragment>)
   }

@@ -18,33 +18,33 @@ class SignUP_IN extends Component {
             name: ''
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         const Status = this.props.location.state;
-        this.setState({Status})
+        this.setState({ Status })
     }
     onAdd = (event) => {
         event.preventDefault();
         if (this.state.LogIn) {
-            if (this.state.UserEmail === ''){
+            if (this.state.UserEmail === '') {
                 this.props.LoginVE()
                 return
             }
-            else if(this.state.UserPass === '') {
+            else if (this.state.UserPass === '') {
                 this.props.LoginVP()
                 return
             }
             this.props.logIn(this.state.UserEmail, this.state.UserPass);
         }
         else if (this.state.SignUp) {
-            if (this.state.UserEmail === ''){
+            if (this.state.UserEmail === '') {
                 this.props.SignUpVE()
                 return
             }
-            else if(this.state.UserPass === ''){
+            else if (this.state.UserPass === '') {
                 this.props.SignUpVP()
                 return
             }
-            else if(this.state.Status === '') {
+            else if (this.state.Status === '') {
                 this.props.SignUpVS()
                 return
             }
@@ -144,12 +144,12 @@ const mapdispatchToProps = (dispatch) => {
         logIn: (email, pass) => dispatch(LOGIN(email, pass)),
         error: () => dispatch(error()),
         signUp: (email, pass, status) => dispatch(SIGNUP(email, pass, status)),
-        LoginVE: () => dispatch({type: Type.logInVE}),
-        LoginVP: () => dispatch({type: Type.logInVP}),
-        SignUpVE: () => dispatch({type: Type.SignUpVE}),
-        SignUpVP: () => dispatch({type: Type.SignUpVP}),
-        SignUpVS: () => dispatch({type: Type.SignUpVS}),
-        
+        LoginVE: () => dispatch({ type: Type.logInVE }),
+        LoginVP: () => dispatch({ type: Type.logInVP }),
+        SignUpVE: () => dispatch({ type: Type.SignUpVE }),
+        SignUpVP: () => dispatch({ type: Type.SignUpVP }),
+        SignUpVS: () => dispatch({ type: Type.SignUpVS }),
+
     }
 }
 const mapStateToProps = (state) => {

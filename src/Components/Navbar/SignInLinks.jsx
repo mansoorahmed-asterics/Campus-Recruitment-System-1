@@ -6,7 +6,7 @@ const SignInLinks = (props) => {
     return (
         <ul className="right">
             {props.status === "Admin" ? (<li>
-            <NavLink to="/UpdationRequest">Requests</NavLink>
+                <NavLink to="/UpdationRequest">Requests</NavLink>
             </li>) : (null)}
             {props.status === "Company" || props.status === "Admin" ? (<li>
                 <NavLink to="/Students">Students</NavLink>

@@ -128,10 +128,10 @@ class Info extends Component {
                 hrname: HRName,
                 email: Email,
                 cnum: ContactNumber,
-                editId:this.state.editID,
+                editId: this.state.editID,
                 status: this.props.status,
             });
-                this.props.history.push("/Profile");
+            this.props.history.push("/Profile");
         }
         else {
             this.props.newCompany({
@@ -174,7 +174,7 @@ class Info extends Component {
                                                 {this.state.edit ? (
                                                     <Button cn="btn-large  orange darken-1" t="Update Request" />
                                                 ) : (
-                                                    <Button cn="btn-large  orange darken-1" t="Register" />)}
+                                                        <Button cn="btn-large  orange darken-1" t="Register" />)}
                                             </div>
                                         </div>
                                     </form>

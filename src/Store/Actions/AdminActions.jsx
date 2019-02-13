@@ -36,7 +36,6 @@ export const BlockList = () => {
 }
 export const UpdationRequest = (data) => {
     return dispatch => {
-        console.log(data.status)
         if (data.status === "Student") {
             firebase.database().ref().child("UpdationRequest").child("Student").push(data)
             dispatch({ type: Type.saveStudentUpdationData })
@@ -105,7 +104,6 @@ export const RequestSAccept = (editId, updationId) => {
                 email: sp.email, 
                 qua: sp.qua,
                 dep: sp.dep}
-                console.log(TemObj)
                 firebase.database().ref().child(`Students/${editId}`).update(TemObj);
                 firebase.database().ref().child("UpdationRequest").child(`Student/${updationId}`).remove();
                 dispatch({type: Type.RequestSAccept})
@@ -122,7 +120,6 @@ export const RequestCAccept = (editId, updationId) => {
                 hrname: sp.hrname,
                 email: sp.email,
                 cnum: sp.cnum}
-                console.log(TemObj)
                 firebase.database().ref().child(`Companies/${editId}`).update(TemObj);
                 firebase.database().ref().child("UpdationRequest").child(`Company/${updationId}`).remove();
                 dispatch({type: Type.RequestCAccept})

@@ -22,11 +22,11 @@ const Profile = (props) => {
                         <div className="card orange lighten-5">
                             <div className="card-image">
                                 <img src={DefaultPic} alt="user-profile" className="pImage" />
-                                {props.isDisabledS ? (<span className="btn-floating halfway-fab waves-effect waves-light grey lighten-2"><i className="material-icons">add</i></span>) : (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/Registration") }}><i className="material-icons">add</i></span>)}      
+                                {props.isDisabledS ? (<span className="btn-floating halfway-fab waves-effect waves-light grey lighten-2"><i className="material-icons">add</i></span>) : (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/Registration") }}><i className="material-icons">add</i></span>)}
                             </div>
                             <div className="card-content">
-                            <div className="card-title orange-text">
-                                STUDENT'S PROFILE
+                                <div className="card-title orange-text">
+                                    STUDENT'S PROFILE
                             </div>
                                 <table>
                                     <tbody>
@@ -77,7 +77,7 @@ const Profile = (props) => {
                     <div className="card">
                         <div className="card-image">
                             <img src={DefaultPicC} alt="user-profile" className="pImage" />
-                            {props.isDisabledC ? (<span className="btn-floating halfway-fab waves-effect waves-light grey lighten-2"><i className="material-icons">add</i></span>):(<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/CompanyInfo") }}><i className="material-icons">add</i></span>)}
+                            {props.isDisabledC ? (<span className="btn-floating halfway-fab waves-effect waves-light grey lighten-2"><i className="material-icons">add</i></span>) : (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/CompanyInfo") }}><i className="material-icons">add</i></span>)}
                         </div>
                         <div className="card-content">
                             <div className="card-title orange-text">
@@ -151,7 +151,7 @@ const Profile = (props) => {
 }
 const mapStateToProps = (state) => {
     const userId = state.auth.currentUser ? (state.auth.currentUser.uid) : (null)
-    const checkS = state.auth.currentUser ? (state.admin.Srequests.find(v => v.userId === userId )) : null;
+    const checkS = state.auth.currentUser ? (state.admin.Srequests.find(v => v.userId === userId)) : null;
     const checkC = state.auth.currentUser ? (state.admin.Crequests.find(v => v.userId === userId)) : null;
     return {
         user: state.auth.currentUser,

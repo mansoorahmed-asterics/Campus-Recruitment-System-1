@@ -92,7 +92,7 @@ class PostVacancy extends Component {
                             </form>
                         </div>
                     </div>
-                ) : (<Loader/>)}
+                ) : (<Loader />)}
             </Fragment>
         );
     }
