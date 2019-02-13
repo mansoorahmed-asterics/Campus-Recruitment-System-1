@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Button from '../../UIComponents/Button'
 import InputS from '../../UIComponents/InputS';
 import An from '../../UIComponents/An';
@@ -109,7 +109,7 @@ class SignUP_IN extends Component {
                                     </div>
                                     <div className="card-action orange lighten-5">
                                         <Button cn="btn form_bu orange darken-3" t="Sign in" />
-                                        <span className="grey-text darken-1">Don't have an account?</span>  &nbsp; <An cn="orange-text text-darken-2 form_a text" t="Sign up" oc={this.whenClick} />
+                                        {this.state.Status === "Admin" ? (null) : (<Fragment> <span className="grey-text darken-1">Don't have an account?</span>  &nbsp; <An cn="orange-text text-darken-2 form_a text" t="Sign up" oc={this.whenClick} /> </Fragment>)}
                                     </div>
                                 </form>
                             </div>
