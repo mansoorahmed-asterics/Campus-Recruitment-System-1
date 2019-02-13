@@ -163,7 +163,8 @@ class Registration extends Component {
                 dep: Department,
                 editId: this.state.editID,
                 status: this.props.status,
-            })
+            });
+            this.props.history.push("/Profile");
         }
         else {
             this.props.newStudent({
@@ -241,9 +242,9 @@ class Registration extends Component {
                                 </div>
                                 <div className="col s4 l2 offset-s4 offset-l5 ">
                                     {this.state.edit ? (
-                                        <Button cn="btn-large  orange darken-1" t="Update" />
+                                        <Button cn="btn-large  orange darken-1" t="Update Request" />
                                     ) : (
-                                            <Button cn="btn-large  orange darken-1" t="Register" />)}
+                                        <Button cn="btn-large  orange darken-1" t="Register" />)}
                                 </div>
                                 <br />
                                 <br />
@@ -267,6 +268,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 const mapStateToProps = (state) => {
+    console.log(state.auth.status)
     return {
         currentUser: state.auth.currentUser,
         errmess: state.student.vErrorMessage,

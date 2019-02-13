@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
-import Loader from "../../Loader/loader";
+import Loader from "../../Loader/Loader";
 import Department from "../../../UIComponents/Department";
 
 class Students extends Component {

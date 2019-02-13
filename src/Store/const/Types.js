@@ -31,5 +31,9 @@ const Type = {
     blockList: "BLOCK_LIST",
     userIsBlocked: "USER_IS_BLOCKED",
     userIsNotBlocked: "USER_IS_NOT_BLOCKED",
+    SUpdationRequests: "STUDENTS_UPDATION_REQUESTS",
+    CUpdationRequests: "COMPANIES_UPDATION_REQUESTS",
+    saveStudentUpdationData: "SAVE_STUDENT_UPDATION_DATA",
+    saveCompanyUpdationData: "SAVE_COMPANY_UPDATION_DATA",
 }
 export default Type;

@@ -128,14 +128,17 @@ class Info extends Component {
                 email: Email,
                 cnum: ContactNumber,
             }, this.state.editID); */
-            this.props.UpdateRequest({userId: this.props.currentUser.uid,
+            this.props.UpdateRequest({
+                userId: this.props.currentUser.uid,
                 cname: CompanyName,
                 es: Established,
                 hrname: HRName,
                 email: Email,
                 cnum: ContactNumber,
-                editId:this.state.editID, 
-                status: this.props.status});
+                editId:this.state.editID,
+                status: this.props.status,
+            });
+                this.props.history.push("/Profile");
         }
         else {
             this.props.newCompany({
@@ -176,7 +179,7 @@ class Info extends Component {
                                             <InputS edit={this.state.edit} t="number" l='Contact Number' n="ContactNumber" v={this.state.ContactNumber} oc={this.whenChange} d="cn" f="cn" />
                                             <div className="card-action">
                                                 {this.state.edit ? (
-                                                    <Button cn="btn-large  orange darken-1" t="Update" />
+                                                    <Button cn="btn-large  orange darken-1" t="Update Request" />
                                                 ) : (
                                                     <Button cn="btn-large  orange darken-1" t="Register" />)}
                                             </div>

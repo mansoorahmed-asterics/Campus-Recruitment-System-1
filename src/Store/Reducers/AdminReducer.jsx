@@ -2,6 +2,8 @@ import Type from "../const/Types";
 const initState = {
     blockList: [],
     userIsBlocked: false,
+    Srequests: [],
+    Crequests: [],
 }
 const AdminReducer = (state = initState, action) => {
     switch(action.type){
@@ -28,6 +30,17 @@ const AdminReducer = (state = initState, action) => {
             ...state,
             userIsBlocked: false,
         }
+        case Type.SUpdationRequests:
+        return state = {
+            ...state,
+            Srequests :action.SupdationRequestsData,
+        }
+        case Type.CUpdationRequests:
+        return state = {
+            ...state,
+            Crequests :action.CupdationRequestsData,
+        }
+        
         default:
         return state;
     }

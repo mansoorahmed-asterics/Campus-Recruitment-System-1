@@ -18,7 +18,7 @@ import CDetails from "./Components/Dashboard/Company/CDetails";
 import { PervDataOfCompanies } from './Store/Actions/CompanyActions';
 import { PervDataOfVacancies } from './Store/Actions/VacancyActions';
 import Vacancies from './Components/Dashboard/Company/Vacancies';
-import { BlockList} from './Store/Actions/AdminActions';
+import { BlockList, PervDataOfUpdationRequests} from './Store/Actions/AdminActions';
 import Blocked from './Components/Dashboard/Admin/Blocked';
 import Request from './Components/Dashboard/Admin/Request';
 class App extends Component {
@@ -28,6 +28,7 @@ class App extends Component {
     this.props.pervDataOfCompanies();
     this.props.pervDataOfVacancies();
     this.props.pervDataOfBlockList();
+    this.props.pervDataOfUpdationRequests();
   }
   render() {
     return (
@@ -99,6 +100,7 @@ const mapDispatchToProps = (dispatch) => {
     pervDataOfCompanies: () => dispatch(PervDataOfCompanies()),
     pervDataOfVacancies: () => dispatch(PervDataOfVacancies()),
     pervDataOfBlockList: () => dispatch(BlockList()),
+    pervDataOfUpdationRequests: () => dispatch(PervDataOfUpdationRequests()),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
