@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom"
 import Drawer from '@material-ui/core/Drawer';
 import './Navbar.css'
 import { connect } from "react-redux"
+import Loader from '../Loader/Loader';
 class Navbar extends Component {
   constructor() {
     super()
@@ -70,7 +71,7 @@ class Navbar extends Component {
             </ul>
           </div>
         </nav>
-        </Fragment>) : (null)}
+        </Fragment>) : (<Loader />)}
       </div>
     )
   }

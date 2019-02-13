@@ -40,7 +40,14 @@ const AdminReducer = (state = initState, action) => {
             ...state,
             Crequests :action.CupdationRequestsData,
         }
-        
+        case Type.RequestCAccept:
+        return state;
+        case Type.RequestSAccept:
+        return state;
+        case Type.RequestSCancel:
+        return state;
+        case Type.RequestCCancel:
+        return state;
         default:
         return state;
     }

@@ -2,6 +2,7 @@ import React,{Fragment} from 'react'
 import { connect } from "react-redux"
 import DefaultPic from '../../../defaultPic.jpg';
 import { BlockS } from '../../../Store/Actions/AdminActions';
+import Loader from '../../Loader/Loader';
 
 const SDetails = (props) => {
     const goBack = () => {
@@ -21,7 +22,7 @@ const SDetails = (props) => {
                         <div className="card">
                         <div className="card-image">
                                 <img src={DefaultPic} alt="user-profile" className="pImage" />
-                                {props.Status === "Admin" ? (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => {props.blockS(student.id, student.userId)}}><i className="material-icons">block</i></span>): (null)}
+                                {props.Status === "Admin" ? (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => {props.blockS(student.id, student.userId); props.history.push("/Students")}}><i className="material-icons">block</i></span>): (null)}
                             </div>
                             <div className="card-content">
                                 <div className="card-title red-text">
@@ -72,7 +73,7 @@ const SDetails = (props) => {
                     </div>
                 </div>
                 </Fragment>) : (<div className="center grey-text lighten-3">Loading. . . . </div>)
-            ) : (null)}
+            ) : (<Loader />)}
         </div>
     )
 }

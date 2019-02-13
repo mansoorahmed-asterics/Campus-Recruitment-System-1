@@ -100,7 +100,7 @@ class Students extends Component {
               </div>) : (<Loader />)
           }
         </Fragment>
-        ) : (null)
+        ) : (<Loader />)
     }
     </Fragment>)
   }

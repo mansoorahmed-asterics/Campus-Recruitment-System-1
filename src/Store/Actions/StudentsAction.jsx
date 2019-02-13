@@ -9,13 +9,6 @@ export const addNewStudent = (newStudent) => {
     }
 }
 
-export const UpdateCurrentStudent = (data,editID) => {
-    return (dispatch) => {
-        firebase.database().ref().child(`Students/${editID}`).update(data)
-        dispatch({type: Type.updateStudent})
-    }
-}
-
 export const PervDataOfStudents = () => {
     return (dispatch) => {
         firebase.database().ref().child("Students").on("value", (snapshot) => {

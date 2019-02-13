@@ -15,8 +15,6 @@ const StudentsReducer = (state = initState, action) => {
             }
         case Type.newStudent:
             return state
-        case Type.updateStudent:
-            return state;
         case Type.validate :
         return state = {
             ...state,

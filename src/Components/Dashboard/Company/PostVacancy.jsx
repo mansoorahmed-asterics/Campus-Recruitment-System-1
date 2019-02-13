@@ -3,6 +3,7 @@ import Input from '../../../UIComponents/Input';
 import Button from '../../../UIComponents/Button';
 import { connect } from "react-redux";
 import { addNewVacancy, RemoveErrorMessagesPC, ErrorPostC } from '../../../Store/Actions/VacancyActions';
+import Loader from '../../Loader/Loader';
 class PostVacancy extends Component {
     constructor(props) {
         super(props);
@@ -91,7 +92,7 @@ class PostVacancy extends Component {
                             </form>
                         </div>
                     </div>
-                ) : (null)}
+                ) : (<Loader/>)}
             </Fragment>
         );
     }

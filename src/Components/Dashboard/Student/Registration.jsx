@@ -3,8 +3,9 @@ import Input from '../../../UIComponents/Input';
 import Button from '../../../UIComponents/Button';
 import Department from "../../../UIComponents/Department"
 import { connect } from "react-redux"
-import { addNewStudent, UpdateCurrentStudent, Validation, RemoveErrorMessages } from "../../../Store/Actions/StudentsAction"
+import { addNewStudent, Validation, RemoveErrorMessages } from "../../../Store/Actions/StudentsAction"
 import { UpdationRequest } from '../../../Store/Actions/AdminActions';
+import Loader from '../../Loader/Loader';
 class Registration extends Component {
     constructor() {
         super();
@@ -144,15 +145,6 @@ class Registration extends Component {
             return;
         }
         else if (this.state.edit) {
-            /* this.props.editStudent({
-                userId: this.props.currentUser.uid,
-                firstName: Name, lastName: LName,
-                age: Age,
-                skills: Skills,
-                gender: Gender, phoneNumber: Phone,
-                email: Email, qua: Qualification,
-                dep: Department,
-            }, this.state.editID) */
             this.props.UpdateRequest({
                 userId: this.props.currentUser.uid,
                 firstName: Name, lastName: LName,
@@ -252,7 +244,7 @@ class Registration extends Component {
                         </div>
                     </div>
                     </Fragment>
-                ) : (null)}
+                ) : (<Loader />)}
             </Fragment>
         )
     }
@@ -261,7 +253,6 @@ class Registration extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         newStudent: (obj) => dispatch(addNewStudent(obj)),
-        /* editStudent: (obj, editID) => dispatch(UpdateCurrentStudent(obj, editID)), */
         valide: (message) => dispatch(Validation(message)),
         error: () => dispatch(RemoveErrorMessages()),
         UpdateRequest: (sdata) => dispatch(UpdationRequest(sdata)),

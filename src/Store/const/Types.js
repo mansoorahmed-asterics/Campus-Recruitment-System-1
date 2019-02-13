@@ -18,10 +18,8 @@ const Type = {
     errorInfoC: "ERROR_INFO_COMPANY",
     newStudent: "NEW_STUDENT",
     pervDataOfStudents: "PERVIOUS_DATA_OF_STUDENTS",
-    updateStudent: "UPDATE_CURRENT_STUDENT",
     newCompany: "NEW_COMPANY",
     pervDataOfCompanies: "PERVIOUS_DATA_OF_COMPANIES",
-    updateCompany: "UPDATE_CURRENT_COMPANY",
     removeErrorMessPC: "REMOVE_ERROR_MESSAGES_POST_COMPANY",
     errorPostC: "ERROR_POST_COMPANY",
     newVacancy: "NEW_VACANCIES",
@@ -35,5 +33,9 @@ const Type = {
     CUpdationRequests: "COMPANIES_UPDATION_REQUESTS",
     saveStudentUpdationData: "SAVE_STUDENT_UPDATION_DATA",
     saveCompanyUpdationData: "SAVE_COMPANY_UPDATION_DATA",
+    RequestSAccept: 'REQUEST_OF_STUDENT_ACCEPT',
+    RequestCAccept: "REQUEST_OF_COMPANY_ACCEPT",
+    RequestSCancel: "REQUEST_OF_STUDENT_REJECT",
+    RequestCCancel: "REQUEST_OF_COMPANY_REJECT",
 }
 export default Type;

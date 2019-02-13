@@ -160,7 +160,7 @@ const mapStateToProps = (state) => {
         allCompanies: state.company.allCompanies,
         allVacancies: state.vacancy.allVacancies,
         isDisabledS: checkS,
-        isDisabledC: checkC, 
+        isDisabledC: checkC,
     }
 }
 export default connect(mapStateToProps)(Profile);

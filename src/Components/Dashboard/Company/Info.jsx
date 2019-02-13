@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react';
 import Button from '../../../UIComponents/Button';
 import { connect } from "react-redux";
 import InputS from '../../../UIComponents/InputS';
-import { addNewCompany, UpdateCurrentCompany, RemoveErrorMessagesC, ErrorInfoC } from '../../../Store/Actions/CompanyActions';
+import { addNewCompany, RemoveErrorMessagesC, ErrorInfoC } from '../../../Store/Actions/CompanyActions';
 import { UpdationRequest } from '../../../Store/Actions/AdminActions';
+import Loader from '../../Loader/Loader';
 class Info extends Component {
     constructor() {
         super();
@@ -120,14 +121,6 @@ class Info extends Component {
             return;
         }
         else if (this.state.edit) {
-            /* this.props.editCompanyInfo({
-                userId: this.props.currentUser.uid,
-                cname: CompanyName,
-                es: Established,
-                hrname: HRName,
-                email: Email,
-                cnum: ContactNumber,
-            }, this.state.editID); */
             this.props.UpdateRequest({
                 userId: this.props.currentUser.uid,
                 cname: CompanyName,
@@ -189,7 +182,7 @@ class Info extends Component {
                             </div>
                         </div>
                     </div>
-                </Fragment>) : (null)}
+                </Fragment>) : (<Loader />)}
             </Fragment>
         );
     }
@@ -197,7 +190,6 @@ class Info extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         newCompany: obj => dispatch(addNewCompany(obj)),
-        /* editCompanyInfo: (obj, editID) => dispatch(UpdateCurrentCompany(obj, editID)), */
         removeError: () => dispatch(RemoveErrorMessagesC()),
         error: mess => dispatch(ErrorInfoC(mess)),
         UpdateRequest: cdata => dispatch(UpdationRequest(cdata)),

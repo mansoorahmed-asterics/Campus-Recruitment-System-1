@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from "react-redux";
 import DefaultPicC from "../../../defaultPicC.jpg";
 import { BlockC } from '../../../Store/Actions/AdminActions';
+import Loader from '../../Loader/Loader';
 
 const CDetails = (props) => {
     const goBack = () => {
@@ -18,7 +19,7 @@ const CDetails = (props) => {
             <div className="card">
                 <div className="card-image">
                     <img src={DefaultPicC} alt="user-profile" className="pImage" />
-                    {props.Status === "Admin" ? (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => {props.blockC(currentCompany.companyID, currentCompany.userId)}}><i className="material-icons">block</i></span>): (null)}
+                    {props.Status === "Admin" ? (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => {props.blockC(currentCompany.companyID, currentCompany.userId); props.history.push("/Vacancies")}}><i className="material-icons">block</i></span>): (null)}
                 </div>
                 <div className="card-content">
                     <div className="card-title orange-text">
@@ -51,7 +52,7 @@ const CDetails = (props) => {
                 </div>
             </div>
         </div>
-        </div></div>):(<div className="center grey-text lighten-3">Loading. . . . </div>)}</Fragment>) : (null)}</div>
+        </div></div>):(<div className="center grey-text lighten-3">Loading. . . . </div>)}</Fragment>) : (<Loader />)}</div>
     );
 }
 const mapStateToProps = (state) => {

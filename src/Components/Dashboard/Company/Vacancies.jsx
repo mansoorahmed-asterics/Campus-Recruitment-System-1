@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from "react-redux";
+import Loader from '../../Loader/Loader';
 const Vacancies = (props) => {
    const details = (id) => {
         props.history.push(`/CDetails/${id}`)
@@ -90,7 +91,7 @@ const Vacancies = (props) => {
         </div>    
         </div>) : (<div className="center">
         <h5 className="orange-text text-darken-1">No Company has posted any vacancy yet!</h5>
-        </div>)) : (null)}</div>
+        </div>)) : (<Loader />)}</div>
     </Fragment>
         
     );

@@ -15,8 +15,6 @@ const CompanyReducer = (state = initialSate, action) => {
             }
         case Type.newCompany:
             return state;
-        case Type.updateCompany:
-            return state;
         case Type.removeErrorMessC: 
             return state = {
                 ...state,
