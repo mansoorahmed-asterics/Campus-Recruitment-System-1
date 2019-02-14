@@ -5,6 +5,8 @@ import Drawer from '@material-ui/core/Drawer';
 import './Navbar.css'
 import { connect } from "react-redux"
 import Loader from '../Loader/Loader';
+import { BlockList, PervDataOfUpdationRequests} from '../../Store/Actions/AdminActions';
+import { PervDataOfVacancies } from '../../Store/Actions/VacancyActions';
 class Navbar extends Component {
   constructor() {
     super()
@@ -18,7 +20,11 @@ class Navbar extends Component {
       left: open,
     });
   };
-
+  componentDidMount(){
+    this.props.pervDataOfVacancies();
+    this.props.pervDataOfBlockList();
+    this.props.pervDataOfUpdationRequests();
+  }
   render() {
     const sideList = (
       <div className="list_width">
@@ -29,12 +35,18 @@ class Navbar extends Component {
             </h6>
           </li>
           {this.props.status === "Admin" ? (<li className="collection-item">
-            <NavLink to="/UpdationRequest" className="orange-text">Requests</NavLink>
+            <NavLink to="/" className="orange-text">Requests</NavLink>
           </li>) : (null)}
-          {this.props.status === "Company" || this.props.status === "Admin" ? (<li className="collection-item">
+          {this.props.status === "Company" ? (<li className="collection-item">
+            <NavLink to="/" className="orange-text">Students</NavLink>
+          </li>) : (null)}
+          {this.props.status === "Student" ? (<li className="collection-item">
+            <NavLink to="/" className="orange-text">Vacancies</NavLink>
+          </li>) : (null)}
+          {this.props.status === "Admin" ? (<li className="collection-item">
             <NavLink to="/Students" className="orange-text">Students</NavLink>
           </li>) : (null)}
-          {this.props.status === "Student" || this.props.status === "Admin" ? (<li className="collection-item">
+          {this.props.status === "Admin" ? (<li className="collection-item">
             <NavLink to="/Vacancies" className="orange-text">Vacancies</NavLink>
           </li>) : (null)}
           {this.props.status === "Company" ? (<li className="collection-item">
@@ -83,4 +95,11 @@ const mapStateToProps = (state) => {
     status: state.auth.status
   }
 }
-export default connect(mapStateToProps, null)(Navbar)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    pervDataOfVacancies: () => dispatch(PervDataOfVacancies()),
+    pervDataOfBlockList: () => dispatch(BlockList()),
+    pervDataOfUpdationRequests: () => dispatch(PervDataOfUpdationRequests()),
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

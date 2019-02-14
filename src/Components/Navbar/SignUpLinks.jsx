@@ -14,7 +14,6 @@ const SignUpLinks = (props) => {
                     </li>
                     <li className="flow-text form_a orange-text text-lighten-1" onClick={() => { props.props.history.push("/SignUp", "Admin") }}>
                         <h4>Admin</h4>
-
                     </li>
                 </ul>
             </div>

@@ -4,7 +4,7 @@
     border-top: 10px solid orange;
     width: 90px;
     height: 90px;
-    margin-top: 15%;
+    margin-top: 5%;
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
   }

@@ -107,7 +107,7 @@ class Registration extends Component {
             return;
         }
         else if (Age <= 15) {
-            this.props.valide("You are not eligible for jobs.")
+            this.props.valide("You are not eligible for jobs becuase you are under age!")
             return;
         }
         else if (Gender === '') {

@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from './Components/Navbar/Navbar';
 import DashBoard from './Components/Dashboard/DashBoard';
-import SignUP_IN from './Components/Auth/SignUP_IN';
 import {connect} from "react-redux";
 import { CURRENTUSER } from './Store/Actions/authActions';
 import "./App.css";
@@ -16,64 +15,55 @@ import Students from './Components/Dashboard/Student/Students';
 import SDetails from "./Components/Dashboard/Student/SDetails";
 import CDetails from "./Components/Dashboard/Company/CDetails";
 import { PervDataOfCompanies } from './Store/Actions/CompanyActions';
-import { PervDataOfVacancies } from './Store/Actions/VacancyActions';
 import Vacancies from './Components/Dashboard/Company/Vacancies';
-import { BlockList, PervDataOfUpdationRequests} from './Store/Actions/AdminActions';
 import Blocked from './Components/Dashboard/Admin/Blocked';
 import Request from './Components/Dashboard/Admin/Request';
+import Loader from './Components/Loader/Loader';
 class App extends Component {
   componentDidMount = () => {
     this.props.currentUser();
     this.props.pervDataOfStudents();
     this.props.pervDataOfCompanies();
-    this.props.pervDataOfVacancies();
-    this.props.pervDataOfBlockList();
-    this.props.pervDataOfUpdationRequests();
   }
   render() {
     return (
       <div className="App">
-        {this.props.User ? (this.props.Status === "Admin" ? (<Router>
+        {this.props.User ? (this.props.Status ? (this.props.Status === "Admin" ? (<Router>
           <Fragment>
             <Navbar />
             <Switch>
-                  <Route path="/UpdationRequest" component={Request}/>
-                  <Route path="/Students" component={Students} />
-                  <Route path="/Vacancies" component={Vacancies} />
-                  <Route path="/SDetails/:id" component={SDetails} />
-                  <Route path="/CDetails/:id" component={CDetails} />
-                  <Route path="/SignOut" component={SignOut}/>
+                  <Route exact path="/" component={Request}/>
+                  <Route exact path="/Students" component={Students} />
+                  <Route exact path="/Vacancies" component={Vacancies} />
+                  <Route exact path="/SDetails/:id" component={SDetails} />
+                  <Route exact path="/CDetails/:id" component={CDetails} />
+                  <Route exact path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>
         </Router>): (this.props.Status === "Student" ? (this.props.regS ? (<Router>
           <Fragment>
             <Navbar />
             <Switch>
-                  <Route path="/Vacancies" component={Vacancies} />
-                  <Route path="/CDetails/:id" component={CDetails} />
-                  <Route path="/Registration" component={Registration}/> 
-                  <Route path="/Profile" component={Profile}/> 
-                  <Route path="/SignOut" component={SignOut}/>
+                  <Route exact  path="/" component={Vacancies} />
+                  <Route exact  path="/CDetails/:id" component={CDetails} />
+                  <Route exact  path="/Registration" component={Registration}/> 
+                  <Route exact  path="/Profile" component={Profile}/> 
+                  <Route exact  path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>
         </Router>): (<Registration />)) : (this.props.regC ? (<Router>
           <Fragment>
             <Navbar />
             <Switch>
-                  <Route path="/Students" component={Students} />
-                  <Route path="/SDetails/:id" component={SDetails} />
-                  <Route path="/CompanyInfo" component={Info}/>
-                  <Route path="/PostVacancy" component={PostVacancy} />
-                  <Route path="/Profile" component={Profile}/> 
-                  <Route path="/SignOut" component={SignOut}/>
+                  <Route exact  path="/" component={Students} />
+                  <Route exact  path="/SDetails/:id" component={SDetails} />
+                  <Route exact  path="/CompanyInfo" component={Info}/>
+                  <Route exact  path="/PostVacancy" component={PostVacancy} />
+                  <Route exact  path="/Profile" component={Profile}/> 
+                  <Route exact  path="/SignOut" component={SignOut}/>
             </Switch>
           </Fragment>
-        </Router>) : (<Info />)))) : (this.props.userIsBlocked ? (<Blocked/>): (<Router>
-              <Fragment>
-                  <Route exact path="/" component={DashBoard} />
-                  <Route exact path="/SignUp" component={SignUP_IN}/>
-              </Fragment>
-            </Router>))}
+        </Router>) : (<Info />)))) : (<Loader />)) : (this.props.userIsBlocked ? (<Blocked/>): (<DashBoard />))}
       </div>
     );
   }
@@ -87,7 +77,7 @@ const mapStateToProps = (state) => {
   return {
     User: user,
     Status: status,
-    regS:regS, 
+    regS:regS,
     regC:regC,
     userIsBlocked: state.admin.userIsBlocked,
   }
@@ -98,9 +88,6 @@ const mapDispatchToProps = (dispatch) => {
     currentUser: () => dispatch(CURRENTUSER()),
     pervDataOfStudents: () => dispatch(PervDataOfStudents()),
     pervDataOfCompanies: () => dispatch(PervDataOfCompanies()),
-    pervDataOfVacancies: () => dispatch(PervDataOfVacancies()),
-    pervDataOfBlockList: () => dispatch(BlockList()),
-    pervDataOfUpdationRequests: () => dispatch(PervDataOfUpdationRequests()),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

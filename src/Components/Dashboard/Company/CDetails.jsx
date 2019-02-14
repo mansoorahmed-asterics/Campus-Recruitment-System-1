@@ -6,7 +6,12 @@ import Loader from '../../Loader/Loader';
 
 const CDetails = (props) => {
     const goBack = () => {
-        props.history.push("/Vacancies")
+        if(props.Status === "Student"){
+            props.history.push("/")
+        }
+        if(props.Status === "Admin"){
+            props.history.push("/Vacancies")
+        }
     }
     const currentCompany = props.allCompanies.find(com => {
         return com.userId === props.match.params.id;

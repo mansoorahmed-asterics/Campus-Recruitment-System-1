@@ -6,7 +6,12 @@ import Loader from '../../Loader/Loader';
 
 const SDetails = (props) => {
     const goBack = () => {
-        props.history.push("/Students")
+        if(props.Status === "Company"){
+            props.history.push("/")
+        }
+        if(props.Status === "Admin"){
+            props.history.push("/Students")
+        }
     }
     const { student } = props
     return (

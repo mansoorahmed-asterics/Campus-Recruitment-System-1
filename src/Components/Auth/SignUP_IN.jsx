@@ -6,7 +6,7 @@ import './SignUp_In.css'
 import { connect } from "react-redux"
 import { LOGIN, error, SIGNUP } from '../../Store/Actions/authActions';
 import Type from '../../Store/const/Types';
-class SignUP_IN extends Component {
+class SignUPIN extends Component {
     constructor() {
         super();
         this.state = {
@@ -19,7 +19,7 @@ class SignUP_IN extends Component {
         }
     }
     componentDidMount() {
-        const Status = this.props.location.state;
+        const Status = this.props.status;
         this.setState({ Status })
     }
     onAdd = (event) => {
@@ -48,16 +48,7 @@ class SignUP_IN extends Component {
                 this.props.SignUpVS()
                 return
             }
-            this.props.signUp(this.state.UserEmail, this.state.UserPass, this.state.Status)
-        }
-        if (this.state.Status === "Admin") {
-            this.props.history.push('/UpdationRequest')
-        }
-        else if (this.state.Status === "Student") {
-            this.props.history.push('/Vacancies')
-        }
-        else if (this.state.Status === "Company") {
-            this.props.history.push('/Students')
+            this.props.signUp(this.state.UserEmail, this.state.UserPass, this.state.Status);
         }
     }
 
@@ -87,15 +78,6 @@ class SignUP_IN extends Component {
     render() {
         return (
             <div>
-                <nav className="nav-wrapper orange darken-4">
-                    <div className="container">
-                        <span className="brand-logo hide-on-small-only">Campus Recruitment System</span>
-                        <span className="hide-on-med-and-up">Campus Recruitment System</span>
-                    </div>
-                </nav>
-                <br />
-                <br />
-                <br />
                 <div className="container">
                     {this.state.LogIn ? (<div className="row">
                         <div className="col s12 m6 l6 offset-l3 offset-m3">
@@ -163,4 +145,4 @@ const mapStateToProps = (state) => {
         signUpUser: state.signUp.signUpUser
     }
 }
-export default connect(mapStateToProps, mapdispatchToProps)(SignUP_IN);
+export default connect(mapStateToProps, mapdispatchToProps)(SignUPIN);

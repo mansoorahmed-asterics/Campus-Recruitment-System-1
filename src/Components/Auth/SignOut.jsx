@@ -5,19 +5,11 @@ import { LOGOUT } from "../../Store/Actions/authActions"
 
 const SignOut = (props) => {
     const whenClick = () => {
-        props.history.push("/")
+        props.history.push("/");
         props.logOut()
     }
     const WhenClick = () => {
-        if (props.Status === "Admin") {
-            props.history.push('/UpdationRequest')
-        }
-        else if (props.Status === "Student") {
-            props.history.push('/Vacancies')
-        }
-        else if (props.Status === "Company") {
-            props.history.push('/Students')
-        }
+      props.history.push("/");
     }
     return (<Fragment>
         {props.User ? (<div className="container">
