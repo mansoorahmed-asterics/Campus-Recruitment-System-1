@@ -63,8 +63,10 @@ class DashBoard extends Component {
                     </div>
                 </nav>
                     <br/>
+                    <div className="container">
                     <div className="grey-text underline form_a" onClick={this.showDash}> &nbsp;
                     <i className="material-icons">arrow_back</i></div>
+                    </div>
                     <SignUPIN status={this.state.status}/>
                 </Fragment>) : (null)}
             </Fragment>
