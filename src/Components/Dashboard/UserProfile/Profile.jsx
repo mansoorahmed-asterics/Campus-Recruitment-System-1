@@ -35,7 +35,7 @@ const Profile = (props) => {
                                             <td>{currentStudent.firstName}</td>
                                         </tr>
                                         <tr>
-                                            <th className="grey-text">Sir Name:</th>
+                                            <th className="grey-text">Sur Name:</th>
                                             <td>{currentStudent.lastName}</td>
                                         </tr>
                                         <tr>

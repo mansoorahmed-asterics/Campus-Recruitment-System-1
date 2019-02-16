@@ -95,7 +95,7 @@ class Request extends Component {
                                                 <td>{this.state.SObj.firstName}</td>
                                             </tr>
                                             <tr>
-                                                <th>Sir Name:</th>
+                                                <th>Sur Name:</th>
                                                 <td>{this.state.SObj.lastName}</td>
                                             </tr>
                                             <tr>

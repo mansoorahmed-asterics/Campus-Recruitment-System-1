@@ -24,6 +24,7 @@ class Registration extends Component {
         }
     }
     componentDidMount() {
+        this.setState({Email: this.props.currentUser.email})
         if (this.props.currentUser) {
             const userID = this.props.currentUser.uid
             if (this.props.allStudents) {
@@ -99,7 +100,7 @@ class Registration extends Component {
             return;
         }
         else if (LName === "") {
-            this.props.valide("Please enter your sir name.")
+            this.props.valide("Please enter your sur Name.")
             return;
         }
         else if (Age === '') {
@@ -206,7 +207,7 @@ class Registration extends Component {
                                         <Input v={this.state.Name} oc={this.whenChange} t="text" f='name' d='name' l='First Name' n="Name" />
                                     </div>
                                     <div className="orange col l6 s12 lighten-5">
-                                        <Input v={this.state.LName} oc={this.whenChange} t="text" f='lname' d='lname' l='Sir Name' n="LName" />
+                                        <Input v={this.state.LName} oc={this.whenChange} t="text" f='lname' d='lname' l='Sur Name' n="LName" />
                                     </div>
                                     <div className="orange col l6 s12 lighten-5">
                                         <Input v={this.state.Age} oc={this.whenChange} t="number" f='age' d='age' l='Age' n="Age" />

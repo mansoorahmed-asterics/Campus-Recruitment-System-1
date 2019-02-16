@@ -40,7 +40,7 @@ const SDetails = (props) => {
                                                     <td>{student.firstName}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Sir Name:</th>
+                                                    <th>Sur Name:</th>
                                                     <td>{student.lastName}</td>
                                                 </tr>
                                                 <tr>

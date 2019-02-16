@@ -20,6 +20,7 @@ class Info extends Component {
     }
 
     componentDidMount() {
+        this.setState({Email: this.props.currentUser.email})
         if (this.props.currentUser) {
             const userID = this.props.currentUser.uid
             if (this.props.allCompanies) {
@@ -42,6 +43,7 @@ class Info extends Component {
         }
     }
     componentWillReceiveProps(nextProps) {
+        
         if (nextProps.currentUser) {
             const userID = nextProps.currentUser.uid
             if (nextProps.allCompanies) {
