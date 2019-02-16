@@ -21,6 +21,8 @@ const VacancyReducer = (state = initialSate, action) => {
                 errorFlag: false,
                 errorMessage: ""
             }
+        case Type.deleteVacancy: 
+        return state;
         case Type.errorPostC: 
         return state = {
             ...state,

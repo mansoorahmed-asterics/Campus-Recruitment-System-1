@@ -8,6 +8,12 @@ export const addNewVacancy = (newVacancy) => {
         dispatch({ type: Type.newVacancy, newVacancy })
     }
 }
+export const DeleteVacancy = (did) => {
+    return dispatch => {
+        firebase.database().ref().child(`Vacancies/${did}`).remove()
+        dispatch({type: Type.deleteVacancy})
+    }
+}
 
 export const PervDataOfVacancies = () => {
     return (dispatch) => {

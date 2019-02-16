@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from "react-redux";
 import DefaultPic from '../../../defaultPic.jpg';
 import DefaultPicC from "../../../defaultPicC.jpg";
+import {DeleteVacancy} from "../../../Store/Actions/VacancyActions";
 const Profile = (props) => {
     const currentStudent = props.allStudents.find(stu => {
         return stu.userId === props.user.uid
@@ -77,7 +78,8 @@ const Profile = (props) => {
                     <div className="card">
                         <div className="card-image">
                             <img src={DefaultPicC} alt="user-profile" className="pImage" />
-                            {props.isDisabledC ? (<span className="btn-floating halfway-fab waves-effect waves-light grey lighten-2"><i className="material-icons">add</i></span>) : (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/CompanyInfo") }}><i className="material-icons">add</i></span>)}
+                            {props.isDisabledC ? (
+                            <span className="btn-floating halfway-fab waves-effect waves-light grey lighten-2"><i className="material-icons">add</i></span>) : (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/CompanyInfo") }}><i className="material-icons">add</i></span>)}
                         </div>
                         <div className="card-content">
                             <div className="card-title orange-text">
@@ -131,6 +133,7 @@ const Profile = (props) => {
                                         <th className="orange-text">
                                             Eligibility Criteria
                                         </th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -139,6 +142,7 @@ const Profile = (props) => {
                                         <td>{v.jobdes}</td>
                                         <td>{v.salary}</td>
                                         <td>{v.ec}</td>
+                                        <td><span className="btn-floating btn-small waves-effect waves-light orange lighten-2" onClick={() => {props.deleteVacancy(v.postId)}}><i className="material-icons">cancel</i></span></td>
                                     </tr>)}
                                 </tbody>
                             </table>) : (<div className="red-text">You didn't post any vacancy yet!</div>)}
@@ -163,4 +167,9 @@ const mapStateToProps = (state) => {
         isDisabledC: checkC,
     }
 }
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) =>{
+return{
+    deleteVacancy : (did) => dispatch(DeleteVacancy(did)),
+}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

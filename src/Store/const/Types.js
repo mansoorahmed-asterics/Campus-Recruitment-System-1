@@ -37,5 +37,6 @@ const Type = {
     RequestCAccept: "REQUEST_OF_COMPANY_ACCEPT",
     RequestSCancel: "REQUEST_OF_STUDENT_REJECT",
     RequestCCancel: "REQUEST_OF_COMPANY_REJECT",
+    deleteVacancy: "DELETE_VACANCY",
 }
 export default Type;
