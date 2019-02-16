@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 import { addNewStudent, Validation, RemoveErrorMessages } from "../../../Store/Actions/StudentsAction"
 import { UpdationRequest } from '../../../Store/Actions/AdminActions';
 import Loader from '../../Loader/Loader';
+import Gender from '../../../UIComponents/Gender';
 class Registration extends Component {
     constructor() {
         super();
@@ -209,11 +210,11 @@ class Registration extends Component {
                                     <div className="orange col l6 s12 lighten-5">
                                         <Input v={this.state.LName} oc={this.whenChange} t="text" f='lname' d='lname' l='Sur Name' n="LName" />
                                     </div>
-                                    <div className="orange col l6 s12 lighten-5">
-                                        <Input v={this.state.Age} oc={this.whenChange} t="number" f='age' d='age' l='Age' n="Age" />
+                                    <div className="orange col l12 s12 lighten-5">
+                                        <Gender oc={this.whenChange} v={this.state.Gender}/>
                                     </div>
                                     <div className="orange col l6 s12 lighten-5">
-                                        <Input v={this.state.Gender} oc={this.whenChange} t="text" f='gender' d='gender' l='Gender' n="Gender" />
+                                        <Input v={this.state.Age} oc={this.whenChange} t="number" f='age' d='age' l='Age' n="Age" />
                                     </div>
                                     <div className="orange col l6 s12 lighten-5">
                                         <Input v={this.state.Qualification} oc={this.whenChange} t="text" f='qua' d='qua' l='Qualification' n="Qualification" />
@@ -221,14 +222,14 @@ class Registration extends Component {
                                     <div className="orange col l6 s12 lighten-5">
                                         <Input v={this.state.Skills} oc={this.whenChange} t="text" f='skills' d='skills' l='Skills' n="Skills" />
                                     </div>
-                                    <div className="orange col l12 s12 lighten-5">
-                                        <Department v={this.state.Department} oc={this.whenChange} text="Department" id="dep-simple" f="dep-simple" n="Department" />
-                                    </div>
                                     <div className="orange col l6 s12 lighten-5">
                                         <Input v={this.state.Email} oc={this.whenChange} t="email" f='email' d='email' l='Email' n="Email" />
                                     </div>
                                     <div className="orange col l6 s12 lighten-5">
                                         <Input v={this.state.Phone} oc={this.whenChange} t="number" f="phn" d="phn" l="Conatct Number" n="Phone" />
+                                    </div>
+                                    <div className="orange col l6 s12 lighten-5">
+                                        <Department v={this.state.Department} oc={this.whenChange} text="Department" id="dep-simple" f="dep-simple" n="Department" />
                                     </div>
                                     <div className="col l12 s12">
                                         &nbsp;

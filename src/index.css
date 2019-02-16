@@ -16,3 +16,14 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 .myCollections{
   border: none !important;
 }
+
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:before,
+[type="radio"].with-gap:checked + span:after {
+  border: 2px solid orange;
+}
+
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:after {
+  background-color: orange;
+}
