@@ -49,16 +49,16 @@ const Vacancies = (props) => {
         </div>) : (<div className="center">
             <h5 className="orange-text text-darken-1">No Company has posted any vacancy yet!</h5>
         </div>)) : (null)}</div>
-        <div className="hide-on-med-and-up"> <br /> <br /> {props.user ? (props.allVacancies.length > 0 ? (<div className="row">
+          <div className="hide-on-med-and-up"> <br /> <br /> {props.user ? (props.allVacancies.length > 0 ? (<div className="row">
             <div className="col l12 s12 m12">
-                <table><thead className="orange darken-3 z-depth-1">
+                <table className="smallFont"><thead className="orange darken-3 z-depth-1">
                     <tr className="white-text">
-                        <th>S.No</th>
-                        <th>Job Name</th>
-                        <th>Job Description</th>
-                        <th>Salary</th>
-                        <th>Eligibility Criteria</th>
-                        <th></th>
+                        <td>S.No</td>
+                        <td>Job Name</td>
+                        <td>Job Description</td>
+                        <td>Salary</td>
+                        <td>Eligibility Criteria</td>
+                        <td></td>
                     </tr>
                 </thead>
                     <tbody>
@@ -80,7 +80,7 @@ const Vacancies = (props) => {
                                         {v.ec}
                                     </td>
                                     <td>
-                                        <span className="btn-floating orange" onClick={() => details(v.userId)}>
+                                        <span className="btn-floating btn-small orange" onClick={() => details(v.userId)}>
                                             <i className="material-icons white-text text-darken-3">info</i>
                                         </span>
                                     </td>
@@ -90,7 +90,7 @@ const Vacancies = (props) => {
                 </table>
             </div>
         </div>) : (<div className="center">
-            <h5 className="orange-text text-darken-1">No Company has posted any vacancy yet!</h5>
+            <h6 className="orange-text text-darken-1">No Company has posted any vacancy yet!</h6>
         </div>)) : (<Loader />)}</div>
     </Fragment>
 

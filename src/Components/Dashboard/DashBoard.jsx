@@ -34,7 +34,7 @@ class DashBoard extends Component {
                         <p className="center hide-on-med-and-down flow-text">Please select one, in order to SignUp/SignIn.</p>
                         <p className="center hide-on-large-only">Please select one, in order to SignUp/SignIn.</p>
                         <div className="row">
-                            <div className="col s6 l6 m6 offset-l5 offset-s3">
+                            <div className="col s6 l6 m6 offset-l5 offset-s3 offset-m4">
                                 <ul>
                                     <li className="form_a orange-text text-lighten-1" onClick={() => {this.showS("Student")}}>
                                         <h4>Student</h4>

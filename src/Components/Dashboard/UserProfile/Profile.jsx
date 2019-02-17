@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from "react-redux";
 import DefaultPic from '../../../defaultPic.jpg';
 import DefaultPicC from "../../../defaultPicC.jpg";
@@ -104,7 +104,7 @@ const Profile = (props) => {
                                         <td>{currentCompany.email}</td>
                                     </tr>
                                     <tr>
-                                        <th className="grey-text">Conatct Number</th>
+                                        <th className="grey-text">Contact Number</th>
                                         <td>{currentCompany.cnum}</td>
                                     </tr>
                                 </tbody>
@@ -118,7 +118,8 @@ const Profile = (props) => {
                             <div className="card-title orange-text">
                                 POSTED VACANCIES
                             </div>
-                            {currentCompanyVacancies.length > 0 ? (<table>
+                            {currentCompanyVacancies.length > 0 ? (<Fragment>
+                                <table className="hide-on-small-only">
                                 <thead>
                                     <tr>
                                         <th className="orange-text">
@@ -145,7 +146,37 @@ const Profile = (props) => {
                                         <td><span className="btn-floating btn-small waves-effect waves-light orange lighten-2" onClick={() => {props.deleteVacancy(v.postId)}}><i className="material-icons">cancel</i></span></td>
                                     </tr>)}
                                 </tbody>
-                            </table>) : (<div className="red-text">You didn't post any vacancy yet!</div>)}
+                            </table>
+                            {/* small start form here */}
+                            <table className="smallFont hide-on-med-and-up">
+                                <thead>
+                                    <tr>
+                                        <td className="orange-text">
+                                            Job Name
+                                        </td>
+                                        <td className="orange-text">
+                                            Job description
+                                        </td>
+                                        <td className="orange-text">
+                                            Salary
+                                        </td>
+                                        <td className="orange-text">
+                                            Eligibility Criteria
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {currentCompanyVacancies.map(v => <tr key={v.postId}>
+                                        <td>{v.jobname}</td>
+                                        <td>{v.jobdes}</td>
+                                        <td>{v.salary}</td>
+                                        <td>{v.ec}</td>
+                                        <td><span className="btn-floating btn-small waves-effect waves-light orange lighten-2" onClick={() => {props.deleteVacancy(v.postId)}}><i className="material-icons">cancel</i></span></td>
+                                    </tr>)}
+                                </tbody>
+                            </table>
+                            </Fragment>) : (<div className="red-text">You didn't post any vacancy yet!</div>)}
                         </div>
                     </div>
                 </div>

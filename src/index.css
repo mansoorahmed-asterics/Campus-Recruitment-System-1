@@ -27,3 +27,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 [type="radio"].with-gap:checked + span:after {
   background-color: orange;
 }
+
+.smallFont{
+  font-size: 80% !important
+}

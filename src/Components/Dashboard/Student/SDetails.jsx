@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { connect } from "react-redux"
 import DefaultPic from '../../../defaultPic.jpg';
-import { BlockS } from '../../../Store/Actions/AdminActions';
+import { BlockS, UnBlockS } from '../../../Store/Actions/AdminActions';
 import Loader from '../../Loader/Loader';
 
 const SDetails = (props) => {
@@ -23,11 +23,12 @@ const SDetails = (props) => {
                         <div className="grey-text underline form_a" onClick={goBack}> &nbsp;
                     <i className="material-icons">arrow_back</i></div>
                         <div className="row">
-                            <div className="col s12 m6 l6 offset-l3">
+                            <div className="col s12 m12 l6 offset-l3">
                                 <div className="card">
                                     <div className="card-image">
                                         <img src={DefaultPic} alt="user-profile" className="pImage" />
-                                        {props.Status === "Admin" ? (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.blockS(student.id, student.userId); props.history.push("/Students") }}><i className="material-icons">block</i></span>) : (null)}
+                                        {props.Status === "Admin" ? (props.isUserBlocked ? (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => {props.unBlockS(student.id, student.userId, props.BlockedUser.key)}}><i className="material-icons">how_to_reg</i>
+                                        </span>) : (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.blockS(student.id,student.userId)}}><i className="material-icons">block</i></span>)) : (null)}
                                     </div>
                                     <div className="card-content">
                                         <div className="card-title red-text">
@@ -88,15 +89,21 @@ const mapStateToProps = (state, ownProps) => {
     const specific = state.student.allStudents.find((student) => {
         return student.id === id
     })
+    const StudentUserId = ownProps.location.state;
+    const isUserBlocked = state.admin.blockList.some(v => v.userId === StudentUserId)
+    const specificBU = state.admin.blockList.find(v => v.userId === StudentUserId)
     return {
         student: specific,
         currentUser: state.auth.currentUser,
         Status: state.auth.status,
+        isUserBlocked: isUserBlocked,
+        BlockedUser: specificBU,
     }
 }
 const mapDispactToProps = (dispatch) => {
     return {
         blockS: (sid, suid) => dispatch(BlockS(sid, suid)),
+        unBlockS: (sid, suid, bukey) => dispatch(UnBlockS(sid, suid, bukey)),
     }
 }
 export default connect(mapStateToProps, mapDispactToProps)(SDetails)

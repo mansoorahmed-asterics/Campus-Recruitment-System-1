@@ -22,6 +22,7 @@ class Registration extends Component {
             Department: "",
             edit: false,
             editID: "",
+            block: false, 
         }
     }
     componentDidMount() {
@@ -46,6 +47,7 @@ class Registration extends Component {
                         Qualification: specific.qua,
                         edit: true,
                         editID: specific.id,
+                        block: specific.block,
                     })
                 }
             }
@@ -72,6 +74,7 @@ class Registration extends Component {
                         Skills: specific.skills,
                         edit: true,
                         editID: specific.id,
+                        block: specific.block,
                     })
                 }
             }
@@ -157,6 +160,7 @@ class Registration extends Component {
                 dep: Department,
                 editId: this.state.editID,
                 status: this.props.status,
+                block: this.state.block,
             });
             this.props.history.push("/Profile");
         }
@@ -168,6 +172,7 @@ class Registration extends Component {
                 email: Email, qua: Qualification,
                 dep: Department,
                 skills: Skills,
+                block: this.state.block,
             })
         }
     }

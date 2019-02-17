@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from "react-redux";
 import DefaultPicC from "../../../defaultPicC.jpg";
-import { BlockC } from '../../../Store/Actions/AdminActions';
+import { BlockC, UnBlockC } from '../../../Store/Actions/AdminActions';
 import Loader from '../../Loader/Loader';
 
 const CDetails = (props) => {
@@ -20,36 +20,38 @@ const CDetails = (props) => {
         <div><br />{props.user ? (<Fragment>{currentCompany ? (<div className="container"><div className="grey-text underline form_a" onClick={goBack}> &nbsp;
         <i className="material-icons">arrow_back</i></div>
             <div className="row">
-                <div className="col s12 m6 l6 offset-l3">
+                <div className="col s12 m12 l6 offset-l3">
                     <div className="card">
                         <div className="card-image">
                             <img src={DefaultPicC} alt="user-profile" className="pImage" />
-                            {props.Status === "Admin" ? (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.blockC(currentCompany.companyID, currentCompany.userId); props.history.push("/Vacancies") }}><i className="material-icons">block</i></span>) : (null)}
+                            {props.Status === "Admin" ? (props.isUserBlocked ? (
+                            <span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.unBlockC(currentCompany.companyID,currentCompany.userId, props.BlockedUser.key)}}>
+                            <i className="material-icons">how_to_reg</i></span>) : (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.blockC(currentCompany.companyID, currentCompany.userId)}}><i className="material-icons">block</i></span>)) : (null)}
                         </div>
                         <div className="card-content">
                             <div className="card-title orange-text">
                                 COMPANY'S INFORMATION
-                    </div>
+                            </div>
                             <table>
                                 <tbody>
                                     <tr>
-                                        <th className="grey-text">Comapny Name</th>
+                                        <th>Company Name</th>
                                         <td>{currentCompany.cname}</td>
                                     </tr>
                                     <tr>
-                                        <th className="grey-text">Established</th>
+                                        <th>Established</th>
                                         <td>{currentCompany.es}</td>
                                     </tr>
                                     <tr>
-                                        <th className="grey-text">HR Name</th>
+                                        <th>HR Name</th>
                                         <td>{currentCompany.hrname}</td>
                                     </tr>
                                     <tr>
-                                        <th className="grey-text">Email</th>
+                                        <th>Email</th>
                                         <td>{currentCompany.email}</td>
                                     </tr>
                                     <tr>
-                                        <th className="grey-text">Conatct Number</th>
+                                        <th>Conatct Number</th>
                                         <td>{currentCompany.cnum}</td>
                                     </tr>
                                 </tbody>
@@ -60,16 +62,25 @@ const CDetails = (props) => {
             </div></div>) : (<div className="center grey-text lighten-3">Loading. . . . </div>)}</Fragment>) : (<Loader />)}</div>
     );
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    const CompanyUserId = ownProps.match.params.id;
+    console.log("companyUserId", CompanyUserId)
+    const isUserBlocked = state.admin.blockList.some(v => v.userId === CompanyUserId)
+    console.log("isUserBlocked", isUserBlocked)
+    const specificBU = state.admin.blockList.find(v => v.userId === CompanyUserId)
+    console.log("specificBlokedUserObject", specificBU)
     return {
         user: state.auth.currentUser,
         allCompanies: state.company.allCompanies,
         Status: state.auth.status,
+        isUserBlocked: isUserBlocked,
+        BlockedUser: specificBU,
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         blockC: (cid, cuid) => dispatch(BlockC(cid, cuid)),
+        unBlockC: (cid, cuid, bukey) => dispatch(UnBlockC(cid, cuid, bukey)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CDetails);

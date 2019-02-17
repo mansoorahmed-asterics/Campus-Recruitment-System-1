@@ -38,7 +38,7 @@ export const CURRENTUSER = () => {
                 firebase.database().ref().child(`Status/${user.uid}`).on("value", (snapshot) => {
                     const s = snapshot.val()
                     if(s === null){
-                        dispatch({type: Type.userIsBlocked})
+                        dispatch({type: Type.userIsBlocked, blockedUser: user})
                     }
                     else{
                     dispatch({ type: Type.currentUser, currentUser: user, userStatus: s.status })

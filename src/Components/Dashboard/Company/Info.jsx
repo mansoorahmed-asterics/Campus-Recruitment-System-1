@@ -16,6 +16,7 @@ class Info extends Component {
             ContactNumber: "",
             edit: false,
             editID: "",
+            block: false,
         };
     }
 
@@ -37,6 +38,7 @@ class Info extends Component {
                         ContactNumber: specific.cnum,
                         edit: true,
                         editID: specific.companyID,
+                        block: specific.block
                     })
                 }
             }
@@ -60,6 +62,7 @@ class Info extends Component {
                         ContactNumber: specific.cnum,
                         edit: true,
                         editID: specific.companyID,
+                        block: specific.block,
                     })
                 }
             }
@@ -132,6 +135,7 @@ class Info extends Component {
                 cnum: ContactNumber,
                 editId: this.state.editID,
                 status: this.props.status,
+                block: this.state.block,
             });
             this.props.history.push("/Profile");
         }
@@ -143,6 +147,7 @@ class Info extends Component {
                 hrname: HRName,
                 email: Email,
                 cnum: ContactNumber,
+                block: this.state.block,
             })
         }
     }

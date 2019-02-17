@@ -1,6 +1,8 @@
 import React from 'react';
 import Type from '../../../Store/const/Types';
 import { connect } from "react-redux";
+import { LOGOUT } from '../../../Store/Actions/authActions';
+
 const Blocked = (props) => {
     return (
         <div className="container">
@@ -12,7 +14,7 @@ const Blocked = (props) => {
                 <b className='flow-text'>Your Account has been blocked by Admin!</b>
                 <br />
                 <br />
-                <button className="btn-small orange" onClick={() => props.goBack()}>Go Back To SignUp/SignIn</button>
+                <button className="btn-small orange" onClick={() => {props.logOut(); props.goBack();}}>Go Back To SignUp/SignIn</button>
                 <br />
                 <br />
             </div>
@@ -21,7 +23,8 @@ const Blocked = (props) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        goBack: () => dispatch({ type: Type.userIsNotBlocked })
+        goBack: () => dispatch({ type: Type.userIsNotBlocked}),
+        logOut: () => dispatch(LOGOUT()),
     }
 }
 export default connect(null, mapDispatchToProps)(Blocked);

@@ -28,6 +28,7 @@ export const PervDataOfStudents = () => {
                     qua: data[key].qua,
                     dep: data[key].dep,
                     skills: data[key].skills,
+                    block: data[key].block
                 })
             }
             dispatch({ type: Type.pervDataOfStudents, data: TemArr })

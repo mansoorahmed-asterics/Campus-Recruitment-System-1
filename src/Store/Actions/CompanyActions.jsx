@@ -30,6 +30,7 @@ export const PervDataOfCompanies = () => {
                     hrname: data[key].hrname,
                     email: data[key].email,
                     cnum: data[key].cnum,
+                    block: data[key].block,
                 })
             }
             dispatch({ type: Type.pervDataOfCompanies, dataC: TemArr })
