@@ -90,7 +90,7 @@ class SignUPIN extends Component {
                                         <InputS n="UserPass" v={this.state.UserPass} t="password" oc={this.whenChange} f="pass" p={this.props.lpass} m={this.props.lmess} d="pass" l='Password' />
                                     </div>
                                     <div className="card-action orange lighten-5">
-                                        <Button cn="btn form_bu orange darken-3" t="Sign in" />
+                                        <Button cn="btn form_bu waves-effect waves-light orange darken-3" t="Sign in" />
                                         {this.state.Status === "Admin" ? (null) : (<Fragment> <span className="grey-text darken-1">Don't have an account?</span>  &nbsp; <An cn="orange-text text-darken-2 form_a text" t="Sign up" oc={this.whenClick} /> </Fragment>)}
                                     </div>
                                 </form>
@@ -108,7 +108,7 @@ class SignUPIN extends Component {
                                         <InputS n="UserPass" v={this.state.UserPass} t="password" oc={this.whenChange} f="pass" p={this.props.spass} m={this.props.smess} d="pass" l='Password' />
                                     </div>
                                     <div className="card-action orange lighten-5">
-                                        <Button cn="btn form_bu orange darken-3" t="Sign up" />
+                                        <Button cn="btn form_bu waves-effect waves-light orange darken-3" t="Sign up" />
                                         <span className="grey-text darken-1">Already have an account?</span> &nbsp; <An cn="orange-text text-darken-2 form_a text" t="Sign in" oc={this.WhenClick} />
                                     </div>
                                 </form>

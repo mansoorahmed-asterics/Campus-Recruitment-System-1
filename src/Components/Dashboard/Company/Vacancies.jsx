@@ -37,7 +37,7 @@ const Vacancies = (props) => {
                                         {v.ec}
                                     </td>
                                     <td>
-                                        <span className="btn-floating orange" onClick={() => details(v.userId)}>
+                                        <span className="btn-floating waves-effect waves-light orange" onClick={() => details(v.userId)}>
                                             <i className="material-icons white-text text-darken-3">info</i>
                                         </span>
                                     </td>
@@ -80,7 +80,7 @@ const Vacancies = (props) => {
                                         {v.ec}
                                     </td>
                                     <td>
-                                        <span className="btn-floating btn-small orange" onClick={() => details(v.userId)}>
+                                        <span className="btn-floating waves-effect waves-light btn-small orange" onClick={() => details(v.userId)}>
                                             <i className="material-icons white-text text-darken-3">info</i>
                                         </span>
                                     </td>

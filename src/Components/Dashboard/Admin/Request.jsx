@@ -37,15 +37,15 @@ class Request extends Component {
                                     <li className="collection-header"><b className="orange-text">Student Requests</b></li>
                                     {this.props.AllSrequests.length > 0 ? (this.props.AllSrequests.map(v => <li key={v.userId} className="collection-item myCollections">
                                         <span><b>{v.firstName} {v.lastName}</b></span>
-                                        <button className="btn-small btn-floating transparent secondary-content" >
+                                        <button className="btn-small btn-floating waves-effect waves-light transparent secondary-content" >
                                             <i className="material-icons orange-text text-darken-3" onClick={() => { this.props.RequestSCancel(v.urid) }}>highlight_off</i>
                                         </button>
                                         <span className="secondary-content">&nbsp; &nbsp;</span>
-                                        <button className="btn-small btn-floating transparent secondary-content" >
+                                        <button className="btn-small btn-floating waves-effect waves-light transparent secondary-content" >
                                             <i className="material-icons orange-text text-darken-3" onClick={() => { this.props.RequestSAccept(v.editId, v.urid) }}>check_circle_outline</i>
                                         </button>
                                         <span className="secondary-content">&nbsp; &nbsp;</span>
-                                        <button className="btn-small btn-floating transparent secondary-content" >
+                                        <button className="btn-small btn-floating waves-effect waves-light transparent secondary-content" >
                                             <i className="material-icons orange-text text-darken-3" onClick={() => { this.dS(v.userId) }}>info</i>
                                         </button>
                                     </li>)) : (<div className="center grey-text flow-text">No Requests.</div>)}
@@ -61,15 +61,15 @@ class Request extends Component {
                                     <li className="collection-header"><b className="orange-text">Companies Requests</b></li>
                                     {this.props.AllCrequests.length > 0 ? (this.props.AllCrequests.map(v => <li key={v.userId} className="collection-item myCollections">
                                         <span><b>{v.cname}</b></span>
-                                        <button className="btn-small btn-floating transparent secondary-content" >
+                                        <button className="btn-small btn-floating waves-effect waves-light transparent secondary-content" >
                                             <i className="material-icons orange-text text-darken-3" onClick={() => { this.props.RequestCCancel(v.urid) }}>highlight_off</i>
                                         </button>
                                         <span className="secondary-content">&nbsp; &nbsp;</span>
-                                        <button className="btn-small btn-floating transparent secondary-content" >
+                                        <button className="btn-small btn-floating waves-effect waves-light transparent secondary-content" >
                                             <i className="material-icons orange-text text-darken-3" onClick={() => { this.props.RequestCAccept(v.editId, v.urid) }}>check_circle_outline</i>
                                         </button>
                                         <span className="secondary-content">&nbsp; &nbsp;</span>
-                                        <button className="btn-small btn-floating transparent secondary-content" >
+                                        <button className="btn-small btn-floating waves-effect waves-light transparent secondary-content" >
                                             <i className="material-icons orange-text text-darken-3" onClick={() => { this.dC(v.userId) }}>info</i>
                                         </button>
                                     </li>)) : (<div className="center grey-text flow-text">No Requests.</div>)}

@@ -32,6 +32,34 @@ class PostVacancy extends Component {
             this.props.error("All fields are required!");
             return;
         }
+        else if(JobName.length > 20){
+            this.props.error("Please enter Job Name properly.");
+            return;
+        }
+        else if(JobName.length < 2){
+            this.props.error("Please enter Job Name properly.");
+            return;
+        }
+        else if(JobDes.length > 25){
+            this.props.error("Please enter Job description properly.");
+            return;
+        }
+        else if(JobDes.length < 5){
+            this.props.error("Please enter Job description properly.");
+            return;
+        }
+        else if(Salary < 5000){
+            this.props.error("Salary can't be less than 5k.");
+            return;
+        }
+        else if(Salary > 1000000){
+            this.props.error("Please enter Salary properly.")
+            return;
+        }
+        else if(EC.length > 20){
+            this.props.error("Please enter Eligibility Criteria properly.");
+            return;
+        }
         else {
             this.props.newVacancy({
                 userId: this.props.currentUser.uid,
@@ -47,6 +75,7 @@ class PostVacancy extends Component {
             Salary: "",
             EC: "",
         })
+        this.props.history.push("/Profile")
     }
     render() {
         return (
@@ -85,7 +114,7 @@ class PostVacancy extends Component {
                                     &nbsp;
                                 </div>
                                 <div className="col s4 l2 offset-s4 offset-l5 ">
-                                    <Button cn="btn-large  orange darken-1" t="Post" />
+                                    <Button cn="btn-large waves-effect waves-light orange darken-1" t="Post" />
                                 </div>
                                 <br />
                                 <br />

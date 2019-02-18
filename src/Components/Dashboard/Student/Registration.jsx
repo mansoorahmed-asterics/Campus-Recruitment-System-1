@@ -103,8 +103,24 @@ class Registration extends Component {
             this.props.valide("Please enter your name.")
             return;
         }
+        else if (Name.length > 20) {
+            this.props.valide("Please enter your name properply.")
+            return;
+        }
+        else if (Name.length < 2) {
+            this.props.valide("Please enter your name properply.")
+            return;
+        }
         else if (LName === "") {
-            this.props.valide("Please enter your sur Name.")
+            this.props.valide("Please enter your sur name.")
+            return;
+        }
+        else if (LName.length > 20) {
+            this.props.valide("Please enter your sur name properply.")
+            return;
+        }
+        else if (LName.length < 2) {
+            this.props.valide("Please enter your sur name properply.")
             return;
         }
         else if (Age === '') {
@@ -116,11 +132,19 @@ class Registration extends Component {
             return;
         }
         else if (Gender === '') {
-            this.props.valide("Please enter your gender.")
+            this.props.valide("Please select your gender.")
             return;
         }
         else if (Qualification === "") {
             this.props.valide("Please enter your qualification.")
+            return;
+        }
+        else if (Qualification.length > 10) {
+            this.props.valide("Please enter your qualification properply.")
+            return;
+        }
+        else if (Qualification.length < 2) {
+            this.props.valide("Please enter your qualification properply.")
             return;
         }
         else if (Department === "") {
@@ -129,6 +153,14 @@ class Registration extends Component {
         }
         else if (Skills === "") {
             this.props.valide("Please enter your skills.")
+            return;
+        }
+        else if (Skills.length > 20) {
+            this.props.valide("Please enter your skills properply.")
+            return;
+        }
+        else if (Skills.length < 2) {
+            this.props.valide("Please enter your skills properply.")
             return;
         }
         else if (Email === "") {
@@ -209,31 +241,28 @@ class Registration extends Component {
                                     <div className="orange col l12 s12 lighten-5">
                                         <br />
                                     </div>
-                                    <div className="orange col l6 s12 lighten-5">
+                                    <div className="orange col l12 s12 lighten-5">
                                         <Input v={this.state.Name} oc={this.whenChange} t="text" f='name' d='name' l='First Name' n="Name" />
                                     </div>
-                                    <div className="orange col l6 s12 lighten-5">
+                                    <div className="orange col l12 s12 lighten-5">
                                         <Input v={this.state.LName} oc={this.whenChange} t="text" f='lname' d='lname' l='Sur Name' n="LName" />
                                     </div>
-                                    <div className="orange col l12 s12 lighten-5">
+                                    {this.state.edit ? (null) : (<div className="orange col l12 s12 lighten-5">
                                         <Gender oc={this.whenChange} v={this.state.Gender}/>
-                                    </div>
-                                    <div className="orange col l6 s12 lighten-5">
+                                    </div>)}
+                                    <div className="orange col l12 s12 lighten-5">
                                         <Input v={this.state.Age} oc={this.whenChange} t="number" f='age' d='age' l='Age' n="Age" />
                                     </div>
-                                    <div className="orange col l6 s12 lighten-5">
+                                    <div className="orange col l12 s12 lighten-5">
                                         <Input v={this.state.Qualification} oc={this.whenChange} t="text" f='qua' d='qua' l='Qualification' n="Qualification" />
                                     </div>
-                                    <div className="orange col l6 s12 lighten-5">
+                                    <div className="orange col l12 s12 lighten-5">
                                         <Input v={this.state.Skills} oc={this.whenChange} t="text" f='skills' d='skills' l='Skills' n="Skills" />
                                     </div>
-                                    <div className="orange col l6 s12 lighten-5">
-                                        <Input v={this.state.Email} oc={this.whenChange} t="email" f='email' d='email' l='Email' n="Email" />
-                                    </div>
-                                    <div className="orange col l6 s12 lighten-5">
+                                    <div className="orange col l12 s12 lighten-5">
                                         <Input v={this.state.Phone} oc={this.whenChange} t="number" f="phn" d="phn" l="Conatct Number" n="Phone" />
                                     </div>
-                                    <div className="orange col l6 s12 lighten-5">
+                                    <div className="orange col l12 s12 lighten-5">
                                         <Department v={this.state.Department} oc={this.whenChange} text="Department" id="dep-simple" f="dep-simple" n="Department" />
                                     </div>
                                     <div className="col l12 s12">
@@ -241,9 +270,9 @@ class Registration extends Component {
                                 </div>
                                     <div className="col s4 l2 offset-s4 offset-l5 ">
                                         {this.state.edit ? (
-                                            <Button cn="btn-large  orange darken-1" t="Update Request" />
+                                            <Button cn="btn-large waves-effect waves-light  orange darken-1" t="Update Request" />
                                         ) : (
-                                                <Button cn="btn-large  orange darken-1" t="Register" />)}
+                                            <Button cn="btn-large waves-effect waves-light orange darken-1" t="Register" />)}
                                     </div>
                                     <br />
                                     <br />

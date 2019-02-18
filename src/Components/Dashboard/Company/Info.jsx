@@ -95,6 +95,14 @@ class Info extends Component {
             this.props.error('Please enter your company name.')
             return;
         }
+        else if (CompanyName.length > 20) {
+            this.props.error('Please enter company name properly.')
+            return;
+        }
+        else if (CompanyName.length < 2) {
+            this.props.error('Please enter company name properly.')
+            return;
+        }
         else if (Established === "") {
             this.props.error("Please enter your company established year")
             return;
@@ -105,6 +113,18 @@ class Info extends Component {
         }
         else if (HRName === "") {
             this.props.error('Please enter your HR name.')
+            return;
+        }
+        else if (HRName.length > 20) {
+            this.props.error('Please enter HR name properly.')
+            return;
+        }
+        else if (HRName.length < 2) {
+            this.props.error('Please enter HR name properly')
+            return;
+        }
+        else if (HRName.indexOf("@") !== -1 || HRName.indexOf(".") !== -1 || HRName.indexOf(",") !== -1 || HRName.indexOf("!") !== -1) {
+            this.props.error("Please enter HR name properly");
             return;
         }
         else if (Email === "") {
@@ -175,13 +195,12 @@ class Info extends Component {
                                             <InputS edit={this.state.edit} t="text" l="Comapny Name" n="CompanyName" v={this.state.CompanyName} oc={this.whenChange} d="cname" f="cname" />
                                             <InputS edit={this.state.edit} t="text" l="Established" n="Established" v={this.state.Established} oc={this.whenChange} d="es" f="es" />
                                             <InputS edit={this.state.edit} t="text" l="HR Name" n="HRName" v={this.state.HRName} oc={this.whenChange} d="hrname" f="hrname" />
-                                            <InputS edit={this.state.edit} t="email" l="Email" n="Email" v={this.state.Email} oc={this.whenChange} d="email" f="email" />
                                             <InputS edit={this.state.edit} t="number" l='Contact Number' n="ContactNumber" v={this.state.ContactNumber} oc={this.whenChange} d="cn" f="cn" />
                                             <div className="card-action">
                                                 {this.state.edit ? (
-                                                    <Button cn="btn-large  orange darken-1" t="Update Request" />
+                                                    <Button cn="btn-large waves-effect waves-light  orange darken-1" t="Update Request" />
                                                 ) : (
-                                                        <Button cn="btn-large  orange darken-1" t="Register" />)}
+                                                    <Button cn="btn-large waves-effect waves-light orange darken-1" t="Register" />)}
                                             </div>
                                         </div>
                                     </form>

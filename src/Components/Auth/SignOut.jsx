@@ -24,9 +24,9 @@ const SignOut = (props) => {
                             <p className="Black-text">Are you sure, You want to Sign out?</p>
                         </div>
                         <div className="card-action">
-                            <An cn="btn-small black-text orange darken-3 white-text" t="Cancel" oc={WhenClick} />
+                            <An cn="btn-small black-text waves-effect waves-light orange darken-3 white-text" t="Cancel" oc={WhenClick} />
                             &nbsp; &nbsp; &nbsp;
-                        <An cn="btn-small black-text orange darken-3 white-text" t="Sign out" oc={whenClick} />
+                        <An cn="btn-small black-text waves-effect waves-light orange darken-3 white-text" t="Sign out" oc={whenClick} />
                         </div>
                     </div>
                 </div>
