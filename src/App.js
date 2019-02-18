@@ -19,6 +19,7 @@ import Vacancies from './Components/Dashboard/Company/Vacancies';
 import Blocked from './Components/Dashboard/Admin/Blocked';
 import Request from './Components/Dashboard/Admin/Request';
 import Loader from './Components/Loader/Loader';
+import Companies from './Components/Dashboard/Company/Companies';
 class App extends Component {
   componentDidMount = () => {
     this.props.currentUser();
@@ -34,6 +35,7 @@ class App extends Component {
             <Switch>
                   <Route exact path="/" component={Request}/>
                   <Route exact path="/Students" component={Students} />
+                  <Route exact path="/Companies" component={Companies} />
                   <Route exact path="/Vacancies" component={Vacancies} />
                   <Route exact path="/SDetails/:id" component={SDetails} />
                   <Route exact path="/CDetails/:id" component={CDetails} />
@@ -45,6 +47,7 @@ class App extends Component {
             <Navbar />
             <Switch>
                   <Route exact  path="/" component={Vacancies} />
+                  <Route exact path="/Companies" component={Companies} />
                   <Route exact  path="/CDetails/:id" component={CDetails} />
                   <Route exact  path="/Registration" component={Registration}/> 
                   <Route exact  path="/Profile" component={Profile}/> 

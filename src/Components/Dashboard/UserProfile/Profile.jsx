@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from "react-redux";
 import DefaultPic from '../../../defaultPic.jpg';
 import DefaultPicC from "../../../defaultPicC.jpg";
-import {DeleteVacancy} from "../../../Store/Actions/VacancyActions";
+import { DeleteVacancy } from "../../../Store/Actions/VacancyActions";
 const Profile = (props) => {
     const currentStudent = props.allStudents.find(stu => {
         return stu.userId === props.user.uid
@@ -79,7 +79,7 @@ const Profile = (props) => {
                         <div className="card-image">
                             <img src={DefaultPicC} alt="user-profile" className="pImage" />
                             {props.isDisabledC ? (
-                            <span className="btn-floating halfway-fab waves-effect waves-light grey lighten-2"><i className="material-icons">add</i></span>) : (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/CompanyInfo") }}><i className="material-icons">add</i></span>)}
+                                <span className="btn-floating halfway-fab waves-effect waves-light grey lighten-2"><i className="material-icons">add</i></span>) : (<span className="btn-floating halfway-fab waves-effect waves-light orange lighten-2" onClick={() => { props.history.push("/CompanyInfo") }}><i className="material-icons">add</i></span>)}
                         </div>
                         <div className="card-content">
                             <div className="card-title orange-text">
@@ -120,62 +120,67 @@ const Profile = (props) => {
                             </div>
                             {currentCompanyVacancies.length > 0 ? (<Fragment>
                                 <table className="hide-on-small-only">
-                                <thead>
-                                    <tr>
-                                        <th className="orange-text">
-                                            Job Name
+                                    <thead>
+                                        <tr>
+                                            <th className="orange-text">
+                                                Job Name
                                         </th>
-                                        <th className="orange-text">
-                                            Job description
+                                            <th className="orange-text">
+                                                Job description
                                         </th>
-                                        <th className="orange-text">
-                                            Salary
+                                            <th className="orange-text">
+                                                Salary
                                         </th>
-                                        <th className="orange-text">
-                                            Eligibility Criteria
+                                            <th className="orange-text">
+                                                Eligibility Criteria
                                         </th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {currentCompanyVacancies.map(v => <tr key={v.postId}>
-                                        <td>{v.jobname}</td>
-                                        <td>{v.jobdes}</td>
-                                        <td>{v.salary}</td>
-                                        <td>{v.ec}</td>
-                                        <td><span className="btn-floating btn-small waves-effect waves-light orange lighten-2" onClick={() => {props.deleteVacancy(v.postId)}}><i className="material-icons">cancel</i></span></td>
-                                    </tr>)}
-                                </tbody>
-                            </table>
-                            {/* small start form here */}
-                            <table className="smallFont hide-on-med-and-up">
-                                <thead>
-                                    <tr>
-                                        <td className="orange-text">
-                                            Job Name
-                                        </td>
-                                        <td className="orange-text">
-                                            Job description
-                                        </td>
-                                        <td className="orange-text">
-                                            Salary
-                                        </td>
-                                        <td className="orange-text">
-                                            Eligibility Criteria
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {currentCompanyVacancies.map(v => <tr key={v.postId}>
-                                        <td>{v.jobname}</td>
-                                        <td>{v.jobdes}</td>
-                                        <td>{v.salary}</td>
-                                        <td>{v.ec}</td>
-                                        <td><span className="btn-floating btn-small waves-effect waves-light orange lighten-2" onClick={() => {props.deleteVacancy(v.postId)}}><i className="material-icons">cancel</i></span></td>
-                                    </tr>)}
-                                </tbody>
-                            </table>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {currentCompanyVacancies.map(v => <tr key={v.postId}>
+                                            <td>{v.jobname}</td>
+                                            <td>{v.jobdes}</td>
+                                            <td>{v.salary}</td>
+                                            <td>{v.ec}</td>
+                                            <td><span className="btn-floating btn-small waves-effect waves-light orange lighten-2" onClick={() => { props.deleteVacancy(v.postId) }}><i className="material-icons">cancel</i></span></td>
+                                        </tr>)}
+                                    </tbody>
+                                </table>
+                                {/* small start form here */}
+                                <table className="smallFont hide-on-med-and-up">
+                                    <tbody>
+                                        {currentCompanyVacancies.map(v =><Fragment key={v.postId}>
+                                            <tr>
+                                                <td className="orange-text">
+                                                    Job Name
+                                                </td>
+                                                <td>{v.jobname}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="orange-text">
+                                                    Job description
+                                                </td>
+                                                <td>{v.jobdes}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="orange-text">
+                                                    Salary
+                                                </td>
+                                                <td>{v.salary}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="orange-text">
+                                                    Eligibility Criteria
+                                                </td>
+                                                <td>{v.ec}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colSpan="2"><span className="btn-small waves-effect waves-light orange lighten-2 right" onClick={() => { props.deleteVacancy(v.postId) }}>Delete</span></td>
+                                            </tr>
+                                            </Fragment>)}
+                                    </tbody>
+                                </table>
                             </Fragment>) : (<div className="red-text">You didn't post any vacancy yet!</div>)}
                         </div>
                     </div>
@@ -198,9 +203,9 @@ const mapStateToProps = (state) => {
         isDisabledC: checkC,
     }
 }
-const mapDispatchToProps = (dispatch) =>{
-return{
-    deleteVacancy : (did) => dispatch(DeleteVacancy(did)),
-}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteVacancy: (did) => dispatch(DeleteVacancy(did)),
+    }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

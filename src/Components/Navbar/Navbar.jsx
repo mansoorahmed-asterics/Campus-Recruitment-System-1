@@ -49,6 +49,9 @@ class Navbar extends Component {
           {this.props.status === "Admin" ? (<li className="collection-item">
             <NavLink to="/Vacancies" className="orange-text">Vacancies</NavLink>
           </li>) : (null)}
+          {this.props.status === "Admin" || this.props.status === "Student" ? (<li className="collection-item">
+            <NavLink to="/Companies" className="orange-text">Companies</NavLink>
+          </li>) : (null)}
           {this.props.status === "Company" ? (<li className="collection-item">
             <NavLink to="/PostVacancy" className="orange-text">Post New Vacancy</NavLink>
           </li>) : (null)}

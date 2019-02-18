@@ -4,7 +4,6 @@ import * as firebase from "firebase";
 
 export const BlockS = (studentId, studentUserId) => {
     return dispatch => {
-        console.log(studentId)
         firebase.database().ref().child(`Status/${studentUserId}`).remove()
         firebase.database().ref().child("BlockList").push(studentUserId)
         const updates = {}
@@ -13,21 +12,8 @@ export const BlockS = (studentId, studentUserId) => {
         dispatch({ type: Type.blocks })
     }
 }
-export const BlockC = (CompanyId, CompanyUserId) => {
-    console.log("blocked",CompanyId)
-    console.log("blocked",CompanyUserId)
-    return dispatch => {
-        const updates = {}
-        updates["block"] = true
-        firebase.database().ref().child(`Status/${CompanyUserId}`).remove()
-        firebase.database().ref().child("BlockList").push(CompanyUserId)
-        firebase.database().ref().child(`Companies/${CompanyId}`).update(updates)
-        dispatch({ type: Type.blockc })
-    }
-}
 export const UnBlockS = (studentId, studentUserId, BUKey) => {
     return dispatch => {
-        console.log(studentId)
         const updates = {}
         updates["block"] = false
         firebase.database().ref().child(`Status/${studentUserId}`).set({status: "Student"})
@@ -36,19 +22,70 @@ export const UnBlockS = (studentId, studentUserId, BUKey) => {
         dispatch({type: Type.unBlockS})
     }
 }
-export const UnBlockC = (CompanyId, companyUserId, BUKey) => {
-    console.log("unblocked",CompanyId)
-    console.log("unblocked",companyUserId)
-    console.log("unblocked",BUKey)
-    return dispatch => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const BlockC = (CompanyId, CompanyUserId) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const vac = state.vacancy.allVacancies;
+        const sp = vac.filter(v => v.userId === CompanyUserId);
+        const updates = {}
+        updates["block"] = true
+        firebase.database().ref().child(`Status/${CompanyUserId}`).remove()
+        firebase.database().ref().child("BlockList").push(CompanyUserId)
+        firebase.database().ref().child(`Companies/${CompanyId}`).update(updates)
+        sp.forEach(v => firebase.database().ref().child(`Vacancies/${v.postId}`).update(updates))
+        dispatch({ type: Type.blockc })
+    }
+}
+export const UnBlockC = (CompanyId, CompanyUserId, BUKey) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const vac = state.vacancy.allVacancies;
+        const sp = vac.filter(v => v.userId === CompanyUserId);
         const updates = {}
         updates["block"] = false
-        firebase.database().ref().child(`Status/${companyUserId}`).set({status: "Company"})
+        firebase.database().ref().child(`Status/${CompanyUserId}`).set({status: "Company"})
         firebase.database().ref().child(`BlockList/${BUKey}`).remove();
         firebase.database().ref().child(`Companies/${CompanyId}`).update(updates)
+        sp.forEach(v => firebase.database().ref().child(`Vacancies/${v.postId}`).update(updates))
         dispatch({type: Type.unBlockC})
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const BlockList = () => {
     return dispatch => {
         firebase.database().ref().child("BlockList").on("value", (snapshot) => {

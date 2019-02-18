@@ -12,6 +12,7 @@ class PostVacancy extends Component {
             JobDes: "",
             Salary: "",
             EC: "",
+            block: false,
         };
     }
     whenChange = (event) => {
@@ -32,7 +33,7 @@ class PostVacancy extends Component {
             this.props.error("All fields are required!");
             return;
         }
-        else if(JobName.length > 20){
+        else if(JobName.length > 25){
             this.props.error("Please enter Job Name properly.");
             return;
         }
@@ -40,7 +41,7 @@ class PostVacancy extends Component {
             this.props.error("Please enter Job Name properly.");
             return;
         }
-        else if(JobDes.length > 25){
+        else if(JobDes.length > 35){
             this.props.error("Please enter Job description properly.");
             return;
         }
@@ -53,10 +54,10 @@ class PostVacancy extends Component {
             return;
         }
         else if(Salary > 1000000){
-            this.props.error("Please enter Salary properly.")
+            this.props.error("Salary can't be more than 1000000.")
             return;
         }
-        else if(EC.length > 20){
+        else if(EC.length > 35){
             this.props.error("Please enter Eligibility Criteria properly.");
             return;
         }
@@ -67,6 +68,8 @@ class PostVacancy extends Component {
                 jobdes: JobDes,
                 salary: Salary,
                 ec: EC,
+                cname: this.props.currentCompany.cname,
+                block: this.state.block,
             })
         }
         this.setState({
@@ -138,6 +141,7 @@ const mapStateToProps = (state) => {
         currentUser: state.auth.currentUser,
         errorMessagePostC: state.vacancy.errorMessage,
         errorFlag: state.vacancy.errorFlag,
+        currentCompany: state.company.allCompanies.find(v => v.userId === state.auth.currentUser.uid)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PostVacancy);

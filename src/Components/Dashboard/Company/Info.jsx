@@ -95,7 +95,7 @@ class Info extends Component {
             this.props.error('Please enter your company name.')
             return;
         }
-        else if (CompanyName.length > 20) {
+        else if (CompanyName.length > 30) {
             this.props.error('Please enter company name properly.')
             return;
         }
@@ -115,7 +115,7 @@ class Info extends Component {
             this.props.error('Please enter your HR name.')
             return;
         }
-        else if (HRName.length > 20) {
+        else if (HRName.length > 25) {
             this.props.error('Please enter HR name properly.')
             return;
         }

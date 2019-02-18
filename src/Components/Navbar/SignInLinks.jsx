@@ -20,6 +20,9 @@ const SignInLinks = (props) => {
             {props.status === "Admin" ? (<li>
                 <NavLink to="/Vacancies">Vacancies</NavLink>
             </li>) : (null)}
+            {props.status === "Admin" || props.status === "Student" ? (<li>
+                <NavLink to="/Companies">Companies</NavLink>
+            </li>) : (null)}
             {props.status === "Company" ? (<li>
                 <NavLink to="/PostVacancy">Post New Vacancy</NavLink>
             </li>) : (null)}

@@ -6,12 +6,7 @@ import Loader from '../../Loader/Loader';
 
 const CDetails = (props) => {
     const goBack = () => {
-        if(props.Status === "Student"){
-            props.history.push("/")
-        }
-        if(props.Status === "Admin"){
-            props.history.push("/Vacancies")
-        }
+        props.history.push("/Companies")
     }
     const currentCompany = props.allCompanies.find(com => {
         return com.userId === props.match.params.id;
@@ -64,11 +59,8 @@ const CDetails = (props) => {
 }
 const mapStateToProps = (state, ownProps) => {
     const CompanyUserId = ownProps.match.params.id;
-    console.log("companyUserId", CompanyUserId)
-    const isUserBlocked = state.admin.blockList.some(v => v.userId === CompanyUserId)
-    console.log("isUserBlocked", isUserBlocked)
-    const specificBU = state.admin.blockList.find(v => v.userId === CompanyUserId)
-    console.log("specificBlokedUserObject", specificBU)
+    const isUserBlocked = state.admin.blockList.some(v => v.userId === CompanyUserId);
+    const specificBU = state.admin.blockList.find(v => v.userId === CompanyUserId);
     return {
         user: state.auth.currentUser,
         allCompanies: state.company.allCompanies,

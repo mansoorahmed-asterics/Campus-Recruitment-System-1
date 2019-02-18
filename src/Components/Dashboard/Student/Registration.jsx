@@ -262,9 +262,9 @@ class Registration extends Component {
                                     <div className="orange col l12 s12 lighten-5">
                                         <Input v={this.state.Phone} oc={this.whenChange} t="number" f="phn" d="phn" l="Conatct Number" n="Phone" />
                                     </div>
-                                    <div className="orange col l12 s12 lighten-5">
+                                    {this.state.edit ? (null) : (<div className="orange col l12 s12 lighten-5">
                                         <Department v={this.state.Department} oc={this.whenChange} text="Department" id="dep-simple" f="dep-simple" n="Department" />
-                                    </div>
+                                    </div>)}
                                     <div className="col l12 s12">
                                         &nbsp;
                                 </div>

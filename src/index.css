@@ -29,5 +29,5 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 .smallFont{
-  font-size: 80% !important
+  font-size: 95% !important
 }

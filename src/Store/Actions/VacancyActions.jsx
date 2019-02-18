@@ -28,6 +28,8 @@ export const PervDataOfVacancies = () => {
                     jobdes: data[key].jobdes,
                     salary: data[key].salary,
                     ec: data[key].ec,
+                    cname: data[key].cname,
+                    block: data[key].block,
                 })
             }
             dispatch({ type: Type.pervDataOfVacancies, dataP: TemArr })
