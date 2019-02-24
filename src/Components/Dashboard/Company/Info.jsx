@@ -192,7 +192,7 @@ class Info extends Component {
                                                 Company Registration Form
                                         </div>
                                             {this.props.errorFlag ? (<div className="center grey lighten-3 red-text"><h6>{this.props.errorMessageC} </h6></div>) : (null)}
-                                            <InputS edit={this.state.edit} t="text" l="Comapny Name" n="CompanyName" v={this.state.CompanyName} oc={this.whenChange} d="cname" f="cname" />
+                                            {this.state.edit ? (null) : <InputS edit={this.state.edit} t="text" l="Comapny Name" n="CompanyName" v={this.state.CompanyName} oc={this.whenChange} d="cname" f="cname" />}
                                             <InputS edit={this.state.edit} t="text" l="Established" n="Established" v={this.state.Established} oc={this.whenChange} d="es" f="es" />
                                             <InputS edit={this.state.edit} t="text" l="HR Name" n="HRName" v={this.state.HRName} oc={this.whenChange} d="hrname" f="hrname" />
                                             <InputS edit={this.state.edit} t="number" l='Contact Number' n="ContactNumber" v={this.state.ContactNumber} oc={this.whenChange} d="cn" f="cn" />

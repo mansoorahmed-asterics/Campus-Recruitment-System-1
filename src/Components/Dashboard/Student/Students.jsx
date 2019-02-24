@@ -57,7 +57,8 @@ class Students extends Component {
             this.props.pervData ? (
               <div className="container">
                 <ul className="collection with-header">
-                  <li className="collection-header"><h2>Find Students</h2></li>
+                  <li className="collection-header hide-on-small-only"><h2>Find Students</h2></li>
+                  <li className="collection-header hide-on-med-and-up"><h4>Find Students</h4></li>
                   {this.props.status === "Admin" ? (this.props.allStudents.length > 0 ? (
                     <Fragment>
                       <li className="collection-item">

@@ -25,7 +25,10 @@ const CDetails = (props) => {
                         </div>
                         <div className="card-content">
                             <div className="card-title orange-text">
-                                COMPANY'S INFORMATION
+                               <h5 className="hide-on-small-only"> COMPANY'S INFORMATION </h5>
+                            </div>
+                            <div className="card-title orange-text">
+                               <h6 className="hide-on-med-and-up"> COMPANY'S INFORMATION </h6>
                             </div>
                             <table>
                                 <tbody>

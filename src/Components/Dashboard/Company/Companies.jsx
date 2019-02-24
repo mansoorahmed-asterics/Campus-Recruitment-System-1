@@ -9,7 +9,8 @@ const Companies = (props) => {
         <Fragment>
             {props.user ? (<div className="container">
                 <ul className="collection with-header ">
-                    <li className="collection-header"><h2>All Companies</h2></li>
+                    <li className="collection-header hide-on-small-only"><h2>All Companies</h2></li>
+                    <li className="collection-header hide-on-med-and-up"><h4>All Companies</h4></li>
                     {props.status === "Admin" ? (props.allCompanies.length > 0 ? (
                         props.allCompanies.map(com => {
                             return (
