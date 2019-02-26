@@ -11,7 +11,8 @@ const Blocked = (props) => {
             <br />
             <br />
             <div className="orange lighten-4 center">
-                <b className='flow-text'>Your Account has been blocked by Admin!</b>
+                <b className='flow-text hide-on-small-only'>Your Account has been blocked by Admin!</b>
+                <b className='hide-on-med-and-up'>Your Account has been blocked by Admin!</b>
                 <br />
                 <br />
                 <button className="btn-small waves-effect waves-light orange" onClick={() => {props.logOut(); props.goBack();}}>Go Back To SignUp/SignIn</button>
